@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Easy example | CartoDB.js</title>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<link rel="shortcut icon" href="http://cartodb.com/assets/favicon.ico" />
+	<style>
+	html, body, #map {
+		height: 100%;
+		padding: 0;
+		margin: 0;
+	}
+	#layer_selector {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		padding: 0;
+	}
+	#layer_selector ul {
+		padding: 0; margin: 0;
+		list-style-type: none;
+	}
+	#layer_selector li {
+		border-bottom: 1px solid #999;
+		padding: 15px 30px;
+		font-family: "Helvetica", Arial;
+		font-size: 13px;
+		color: #444;
+		cursor: auto;
+	}
+	#layer_selector li:hover {
+		background-color: #F0F0F0;
+		cursor: pointer;
+	}
+	#layer_selector li.selected {
+		background-color: #EEE;
+	}
+
+	</style>
+
+	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+</head>
+<body>
+	<div id="map"></div>
+	<div id="layer_selector" class="cartodb-infobox">
+		<div id="buttons">
+			<button id="sublayer0" class="Btn Btn--l Btn--blue"><span>10% or less of workforce is unionized</span></button>
+			<button id="sublayer1" class="Btn Btn--l Btn--blue"><span>More than 13% of residents in these states don't have health insurance</span></button>
+		</div>
+	</div>
+
+	<!-- include cartodb.js library -->
+	<script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+
+	<script>
+	function main() {
+		cartodb.createVis('map', 'https://fma2.cartodb.com/api/v2/viz/ffcacf76-ea09-11e5-a0e7-0e31c9be1b51/viz.json', {
+			shareable: true,
+            // title: true,
+            // description: true,
+            // search: true,
+            tiles_loader: true,
+            // center_lat: 0,
+            // center_lon: 0,
+            zoom: 4
+          })
+		.done(function(vis, layers) {
+          // layer 0 is the base layer, layer 1 is cartodb layer
+          // setInteraction is disabled by default
+          layers[1].setInteraction(true);
+          layers[1].on('featureOver', function(e, latlng, pos, data) {
+          	cartodb.log.log(e, latlng, pos, data);
+          });
+          // you can get the native map to work with it
+          var map = vis.getNativeMap();
+          // now, perform any operations you need
+          // map.setZoom(3);
+          // map.panTo([50.5, 30.5]);
+
+        // create a layer with 1 sublayer
+        cartodb.createLayer(map, {
+        	user_name: 'fma2',
+        	type: 'cartodb',
+        	sublayers: [{
+        		sql: "SELECT * FROM rtw_data WHERE uninsured_rate___percent > 0.13",
+        		cartocss: '#uninsured_rate {polygon-fill: red; polygon-opacity: 0.3; line-color: red;}'
+        	},
+        	{
+    				sql: "SELECT * FROM rtw_data WHERE percent_union <= 0.10", // Natural and artificial lakes
+    				cartocss: '#percent_union {polygon-fill: #0000FF; polygon-opacity: 0.3; line-color: #0000FF;}'
+    			}
+    			]
+    		})
+				.addTo(map) // add the layer to our map which already contains 1 sublayer
+				.done(function(layer){
+					var sublayer0Shown = true;
+					$("#sublayer0").on('click', function() {
+						if (sublayer0Shown) {
+							sublayers[0].hide();
+						} else {
+							sublayers[0].show();
+						}
+						sublayer0Shown = !sublayer0Shown; 
+					});
+
+
+					var legend = new cdb.geo.ui.Legend({
+						type: "bubble",
+						data: [
+						{ value: "10" },
+						{ value: "20" },
+						{ name: "graph_color", value: "#F00" }
+						]
+					});
+					var choropleth = new cdb.geo.ui.Legend({
+						type: "choropleth",
+						data: [
+						{ value: "10" },
+						{ value: "20" },
+						{ name: "color1", value: "#F00" },
+						{ name: "color2", value: "#0F0" },
+						{ name: "color3", value: "#00F" }
+						]
+					});
+					var stackedLegend = new cdb.geo.ui.StackedLegend({
+						legends: [legend, choropleth]
+					});
+
+					$('#map').append(stackedLegend.render().el);
+				});
+			})
+.error(function(err) {
+	console.log(err);
+});
+}
+window.onload = main;
+</script>
+</body>
+</html>
