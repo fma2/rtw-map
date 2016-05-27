@@ -5,7 +5,7 @@
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 	<link rel="shortcut icon" href="http://cartodb.com/assets/favicon.ico" />
-	<link rel="stylesheet" type="text/css" href="styles.css">
+
 	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<style type='cartocss/text' id='bubble-uninsured'>
@@ -148,6 +148,39 @@
 			marker-width: 5.0;
 		}
 	</style>
+
+	<style type="cartocss/css" id="bubble-wage">
+/** choropleth visualization */
+
+#us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo{
+  polygon-fill: #B10026;
+  polygon-opacity: 0.8;
+  line-color: #FFF;
+  line-width: 0.5;
+  line-opacity: 1;
+}
+#us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ min_wage <= 10.5] {
+   polygon-fill: #FFFFB2;
+}
+#us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ min_wage <= 9.75] {
+   polygon-fill: #FED976;
+}
+#us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ min_wage <= 9.25] {
+   polygon-fill: #FEB24C;
+}
+#us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ min_wage <= 8.55] {
+   polygon-fill: #FD8D3C;
+}
+#us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ min_wage <= 8.31] {
+   polygon-fill: #FC4E2A;
+}
+#us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ min_wage <= 8.05] {
+   polygon-fill: #E31A1C;
+}
+#us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ min_wage <= 7.5] {
+   polygon-fill: #B10026;
+}
+	</style>
 	<style type='cartocss/text' id='bubble-wage'>
 		/** bubble visualization */
 
@@ -194,6 +227,7 @@
 			marker-width: 15.0;
 		}
 	</style>
+		<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 	<!-- top navbar -->
