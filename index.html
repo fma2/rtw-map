@@ -68,7 +68,37 @@
 			line-width:6;
 			line-color:#FFF;
 		}
+	</style>
+	<style type="cartocss/css" id="poverty-less-15">
+		/*income poverty rate less 15*/
 
+		#state_squares_rtw_states_data::labels {
+			text-name: [income_poverty_rate_percent] + '%';
+			text-face-name: 'Open Sans Regular';
+			text-size: 10;
+			text-label-position-tolerance: 10;
+			text-fill: #000;
+			text-halo-fill: #FFFFFF;
+			text-halo-radius: 0 ;
+			text-dy: 10;
+			text-allow-overlap: false;
+			text-placement: point;
+			text-placement-type: simple;
+		}
+
+		#state_squares_rtw_states_data [income_poverty_rate_percent > 15] {
+			polygon-fill: #FFF;
+			polygon-opacity: .9;
+
+			line-width:6;
+			line-color:#FFF;
+		}
+		#state_squares_rtw_states_data [income_poverty_rate_percent = null] {
+			polygon-fill: #FFF;
+			polygon-opacity: 1;
+			line-width:6;
+			line-color:#FFF;
+		}
 	</style>
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
@@ -92,30 +122,37 @@
   	<div class="row row-offcanvas row-offcanvas-left">
   		<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
   			<div id="layer_selector" class="cartodb-infobox">
+  				
   				<h5><a href="#amt-min-wage" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Minimum wage</a></h5>
   				<ul class="collapse" id="amt-min-wage">
   					<li data="<= 8" data-type="cartocss" data-param="wage-less-8" class="min-wage">Minimum wage is $8 or less</li>
   					<li data="> 8" data-type="cartocss" data-param="wage-more-8" class="min-wage">Minimum wage is more than $8</li>
   				</ul>
+
+  				<h5><a href="#percent-poverty" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Percent poverty</a></h5>
+  				<ul class="collapse" id="percent-poverty">
+
+  					<!-- <li data="all" data-type="cartocss" data-param="bubble-poverty" class="poverty-rate">All states</li> -->
+  					<li data="<= 15" data-type="cartocss" data-param="poverty-less-15" class="poverty-rate">15% or fewer residents in poverty</li>
+  					<li data="> 15" data-type="cartocss" data-param="bubble-poverty" class="poverty-rate">more than 15% residents in poverty</li>
+  				</ul>
+  				
+
   				<h5><a href="#percent-uninsured" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Percent uninsured</a></h5>
   				<ul class="collapse" id="percent-uninsured">
   					<li data="all" data-type="cartocss" data-param="bubble-uninsured" class="uninsured-rate">All states</li>
   					<li data="<= 13" data-type="cartocss"  data-param="bubble-uninsured" class="uninsured-rate">13% or less uninsured</li>
   					<li data="> 13" data-type="cartocss" data-param="bubble-uninsured" class="uninsured-rate">more than 13% uninsured</li>
   				</ul>
+
   				<h5><a href="#percent-unionized" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Percent unionized</a></h5>
   				<ul class="collapse" id="percent-unionized">
   					<li data="all" data-type="cartocss" data-param="bubble-unionized" class="unionized-rate">All states</li>
   					<li data="<= 10" data-type="cartocss" data-param="bubble-unionized" class="unionized-rate">10% or less unionized</li>
   					<li data="> 10" data-type="cartocss" data-param="bubble-unionized" class="unionized-rate">more than 10% unionized</li>
   				</ul>
-  				<h5><a href="#percent-poverty" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Percent poverty</a></h5>
-  				<ul class="collapse" id="percent-poverty">
 
-  					<li data="all" data-type="cartocss" data-param="bubble-poverty" class="poverty-rate">All states</li>
-  					<li data="<= 15" data-type="cartocss" data-param="bubble-poverty" class="poverty-rate">15% or fewer residents in poverty</li>
-  					<li data="> 15" data-type="cartocss" data-param="bubble-poverty" class="poverty-rate">more than 15% residents in poverty</li>
-  				</ul>
+
   				<ul>
   					<li>RESET</li>
   				</ul>

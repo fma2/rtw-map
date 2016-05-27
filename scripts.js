@@ -1,4 +1,4 @@
-function createSelector(layer, selector, dataset, col) {
+function createSelector(layer, selector) {
   var sql = new cartodb.SQL({ user: 'fma2' });
   var $options = $(selector);
   $options.click(function(e) {
@@ -7,13 +7,12 @@ function createSelector(layer, selector, dataset, col) {
     var filter = $li.attr('data');
     var type = $li.data('type');
     var param = $li.data('param');
-
+    
     // deselect all and select the clicked one
     $options.removeClass('selected');
     $li.addClass('selected');
     // create query based on data from the layer
-    var query = "select * from " + dataset;
-
+    // var query = "select * from " + dataset;
 
     // if(filter !== 'all') {
     //   query = "select * from " + dataset + " where " + col + filter;
@@ -27,7 +26,7 @@ function createSelector(layer, selector, dataset, col) {
     }
 
     // change the query in the layer to update the map // THIS MIGHT BE ABLE TO BE REFACTORED WITH ABOVE
-    layer.setSQL(query);
+    // layer.setSQL(query);
     layer.show();
   });
 }
@@ -54,8 +53,36 @@ function main() {
     
     // you can get the native map to work with it
     var map = vis.getNativeMap();
+
+    // create minimum wage sublayer
+    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/cfefc586-0318-11e6-9de5-0ea31932ec1d/viz.json')
+    .addTo(map)
+    .done(function(layer){
+      var subLayer = layer.getSubLayer(0);
+
+      // hide points in this layer
+      subLayer.hide();
+
+      // create selector for this layer
+      createSelector(subLayer, '#layer_selector li.min-wage');
+    }) 
+
+    // create poverty rate sublayer
+    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/cfefc586-0318-11e6-9de5-0ea31932ec1d/viz.json')
+    .addTo(map)
+    .done(function(layer){
+      var subLayer = layer.getSubLayer(0);
+
+      // hide points in this layer
+      subLayer.hide();
+
+      // create selector for this layer
+      createSelector(subLayer, '#layer_selector li.poverty-rate');
+
+      // createSelector(subLayer, '#layer_selector li.poverty-rate', 'us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo', 'income_povery_rate_percent');
+    })  
     
-    // create a layer with 1 sublayer
+    // create percent uninsured sublayer
     cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/cddae736-fa98-11e5-8fa8-0e5db1731f59/viz.json')
     .addTo(map)
     .done(function(layer){
@@ -68,6 +95,7 @@ function main() {
       createSelector(subLayer, '#layer_selector li.uninsured-rate', 'us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo', 'uninsured_rate_percent');
     })
 
+    // create percent unionized sublayer
     cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/159ae39a-fa9a-11e5-88b6-0e674067d321/viz.json')
     .addTo(map)
     .done(function(layer){
@@ -79,28 +107,6 @@ function main() {
       // create selector for this layer
       createSelector(subLayer, '#layer_selector li.unionized-rate', 'us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo', 'percent_union');
     })
-    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/5d6fb644-fa9c-11e5-8b1d-0e3ff518bd15/viz.json')
-    .addTo(map)
-    .done(function(layer){
-      var subLayer = layer.getSubLayer(0);
-
-      // hide points in this layer
-      subLayer.hide();
-
-      // create selector for this layer
-      createSelector(subLayer, '#layer_selector li.poverty-rate', 'us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo', 'income_povery_rate_percent');
-    }) 
-    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/cfefc586-0318-11e6-9de5-0ea31932ec1d/viz.json')
-    .addTo(map)
-    .done(function(layer){
-      var subLayer = layer.getSubLayer(0);
-
-      // hide points in this layer
-      subLayer.hide();
-
-      // create selector for this layer
-      createSelector(subLayer, '#layer_selector li.min-wage', 'state_squares_rtw_states_data', 'min_wage');
-    })  
   })
   .error(function(err) {
     console.log(err);
