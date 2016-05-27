@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Right-to-work</title>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <link rel="shortcut icon" href="http://cartodb.com/assets/favicon.ico" />
+  <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <style type='cartocss/text' id='bubble-uninsured'>
+    /** bubble uninsured */
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo{
+      marker-fill-opacity: 0.9;
+      marker-line-color: #FFF;
+      marker-line-width: 1;
+      marker-line-opacity: 1;
+      marker-placement: point;
+      marker-multi-policy: largest;
+      marker-type: ellipse;
+      marker-fill: #FF5C00;
+      marker-allow-overlap: true;
+      marker-clip: false;
+      marker-file: url(https://cdn3.iconfinder.com/data/icons/strokeicon-volume-7/512/0-3-78-128.png);
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ uninsured_rate_percent <= 21.3] {
+      marker-width: 50.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ uninsured_rate_percent <= 17.8] {
+      marker-width: 45.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ uninsured_rate_percent <= 16.8] {
+      marker-width: 40.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ uninsured_rate_percent <= 14.1] {
+      marker-width: 35.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ uninsured_rate_percent <= 13.7] {
+      marker-width: 30.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ uninsured_rate_percent <= 11.7] {
+      marker-width: 25.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ uninsured_rate_percent <= 11.1] {
+      marker-width: 20.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ uninsured_rate_percent <= 10] {
+      marker-width: 15.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ uninsured_rate_percent <= 8.7] {
+      marker-width: 10.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ uninsured_rate_percent <= 6.8] {
+      marker-width: 5.0;
+    }
+  </style>
+
+  <style type='cartocss/text' id='bubble-unionized'>
+    /** bubble unionized */
+
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo{
+      marker-fill-opacity: 0.9;
+      marker-line-color: #FFF;
+      marker-line-width: 1;
+      marker-line-opacity: 1;
+      marker-placement: point;
+      marker-multi-policy: largest;
+      marker-type: ellipse;
+      marker-fill: #A53ED5;
+      marker-allow-overlap: true;
+      marker-clip: false;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ percent_union <= 24.7] {
+      marker-width: 50.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ percent_union <= 16.8] {
+      marker-width: 45.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ percent_union <= 14.8] {
+      marker-width: 40.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ percent_union <= 12.6] {
+      marker-width: 35.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ percent_union <= 11.6] {
+      marker-width: 30.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ percent_union <= 9.85] {
+      marker-width: 25.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ percent_union <= 8.7] {
+      marker-width: 20.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ percent_union <= 7.1] {
+      marker-width: 15.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ percent_union <= 5.6] {
+      marker-width: 10.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ percent_union <= 4.5] {
+      marker-width: 5.0;
+    }
+  </style>
+
+  <style type='cartocss/text' id='bubble-poverty'>
+    /** bubble poverty */
+
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo {
+      marker-fill-opacity: 0.9;
+      marker-line-color: #FFF;
+      marker-line-width: 1;
+      marker-line-opacity: 1;
+      marker-placement: point;
+      marker-multi-policy: largest;
+      marker-type: ellipse;
+      marker-fill: #FFCC00;
+      marker-allow-overlap: true;
+      marker-clip: false;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ income_povery_rate_percent <= 20.8] {
+      marker-width: 50.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ income_povery_rate_percent <= 18.6] {
+      marker-width: 45.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ income_povery_rate_percent <= 16.9] {
+      marker-width: 40.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ income_povery_rate_percent <= 15.9] {
+      marker-width: 35.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ income_povery_rate_percent <= 15.1] {
+      marker-width: 30.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ income_povery_rate_percent <= 14.35] {
+      marker-width: 25.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ income_povery_rate_percent <= 13] {
+      marker-width: 20.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ income_povery_rate_percent <= 12.1] {
+      marker-width: 15.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ income_povery_rate_percent <= 11.3] {
+      marker-width: 10.0;
+    }
+    #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ income_povery_rate_percent <= 10.7] {
+      marker-width: 5.0;
+    }
+  </style>
+
+ <style type="cartocss/css" id="bubble-wage-all">
+    /** simple visualization */
+
+    #state_squares_rtw_states_data{
+      /*polygon-opacity: 0.8;*/
+      /*line-color: black;*/
+      /*line-width: 1;*/
+      /*line-opacity: 1;*/
+      /*polygon-pattern-file: url(http://com.cartodb.users-assets.production.s3.amazonaws.com/patterns/diagonal_1px_med.png);*/
+      /*polygon-pattern-opacity: 0.5;*/
+    }
+    #state_squares_rtw_states_data::labels {
+      text-name: '$' + [min_wage];
+      text-face-name: 'Open Sans Regular';
+      text-size: 10;
+      text-label-position-tolerance: 10;
+      text-fill: #000;
+      text-halo-fill: #FFFFFF;
+      text-halo-radius: 0;
+      text-dy: 10;
+      text-allow-overlap: false;
+      text-placement: point;
+      text-placement-type: simple;
+    }
+
+    #state_squares_rtw_states_data [ min_wage <= 8] {
+      polygon-pattern-file: url(http://com.cartodb.users-assets.production.s3.amazonaws.com/patterns/diagonal_1px_med.png);
+      polygon-pattern-opacity: 0.4;
+    }
+
+    #state_squares_rtw_states_data [ min_wage > 8] {
+      /*polygon-fill: #FFF;*/
+      /*polygon-opacity: 1;*/
+  /*polygon-opacity: .9;*/
+      
+      /*line-width:6;*/
+      /*line-color:#FFF;*/
+      /*line-width: 5;*/
+      polygon-pattern-file: url(http://com.cartodb.users-assets.production.s3.amazonaws.com/patterns/dots_2px_fast.png);
+      polygon-pattern-opacity: 0.4;
+    }
+    
+    #state_squares_rtw_states_data [ min_wage = null] {
+      polygon-fill: #FFF;
+      polygon-opacity: 1;
+      line-width:6;
+      line-color:#FFF;
+      /*line-width: 5;*/
+      /*polygon-pattern-file: url(http://com.cartodb.users-assets.production.s3.amazonaws.com/patterns/dots_2px_fast.png);*/
+      /*polygon-pattern-opacity: 0.4;*/
+    }
+/*#state_squares_rtw_states_data [ rtw_or_not = "RTW"] {
+   line-color:blue;
+   line-width: 5;
+  line-opacity: 1;
+}*/
+
+</style>
+  <style type="cartocss/css" id="bubble-wage-less-8">
+    /** simple visualization */
+
+    #state_squares_rtw_states_data{
+      /*polygon-opacity: 0.8;*/
+      /*line-color: black;*/
+      /*line-width: 1;*/
+      /*line-opacity: 1;*/
+      /*polygon-pattern-file: url(http://com.cartodb.users-assets.production.s3.amazonaws.com/patterns/diagonal_1px_med.png);*/
+      /*polygon-pattern-opacity: 0.5;*/
+    }
+    #state_squares_rtw_states_data::labels {
+      text-name: '$' + [min_wage];
+      text-face-name: 'Open Sans Regular';
+      text-size: 10;
+      text-label-position-tolerance: 10;
+      text-fill: #000;
+      text-halo-fill: #FFFFFF;
+      text-halo-radius: 0 ;
+      text-dy: 10;
+      text-allow-overlap: false;
+      text-placement: point;
+      text-placement-type: simple;
+    }
+
+    #state_squares_rtw_states_data [ min_wage <= 8] {
+      /*polygon-pattern-file: url(http://com.cartodb.users-assets.production.s3.amazonaws.com/patterns/diagonal_1px_med.png);*/
+      /*polygon-pattern-opacity: 0.4;*/
+    }
+
+    #state_squares_rtw_states_data [ min_wage > 8] {
+      polygon-fill: #FFF;
+      /*polygon-opacity: 1;*/
+      polygon-opacity: .9;
+
+      line-width:6;
+      line-color:#FFF;
+      /*line-width: 5;*/
+      /*polygon-pattern-file: url(http://com.cartodb.users-assets.production.s3.amazonaws.com/patterns/dots_2px_fast.png);*/
+      /*polygon-pattern-opacity: 0.4;*/
+    }
+    #state_squares_rtw_states_data [ min_wage = null] {
+      polygon-fill: #FFF;
+      polygon-opacity: 1;
+      line-width:6;
+      line-color:#FFF;
+      /*line-width: 5;*/
+      /*polygon-pattern-file: url(http://com.cartodb.users-assets.production.s3.amazonaws.com/patterns/dots_2px_fast.png);*/
+      /*polygon-pattern-opacity: 0.4;*/
+    }
+/*#state_squares_rtw_states_data [ rtw_or_not = "RTW"] {
+   line-color:blue;
+   line-width: 5;
+  line-opacity: 1;
+}*/
+
+</style>
+
+<style type="cartocss/css" id="bubble-wage-more-8">
+ /** simple visualization */
+
+ #state_squares_rtw_states_data{
+  /*polygon-opacity: 0.8;*/
+  /*line-color: black;*/
+  /*line-width: 1;*/
+  /*line-opacity: 1;*/
+  /*polygon-pattern-file: url(http://com.cartodb.users-assets.production.s3.amazonaws.com/patterns/diagonal_1px_med.png);*/
+  /*polygon-pattern-opacity: 0.5;*/
+}
+#state_squares_rtw_states_data::labels {
+  text-name: '$' + [min_wage];
+  text-face-name: 'Open Sans Regular';
+  text-size: 10;
+  text-label-position-tolerance: 10;
+  text-fill: #000;
+  text-halo-fill: #FFFFFF;
+  text-halo-radius: 0;
+  text-dy: 10;
+  text-allow-overlap: false;
+  text-placement: point;
+  text-placement-type: simple;
+}
+
+#state_squares_rtw_states_data [ min_wage > 8] {
+  /*polygon-pattern-file: url(http://com.cartodb.users-assets.production.s3.amazonaws.com/patterns/dots_2px_fast.png);*/
+  /*polygon-pattern-opacity: 0.4;*/
+}
+
+#state_squares_rtw_states_data [ min_wage <= 8] {
+  polygon-fill: #FFF;
+  polygon-opacity: .9;
+  line-width:6;
+  line-color:#FFF;
+  /*line-width: 5;*/
+  /*polygon-pattern-file: url(http://com.cartodb.users-assets.production.s3.amazonaws.com/patterns/dots_2px_fast.png);*/
+  /*polygon-pattern-opacity: 0.4;*/
+}
+#state_squares_rtw_states_data [ min_wage = null] {
+  polygon-fill: #FFF;
+  polygon-opacity: 1;
+  line-width:6;
+  line-color:#FFF;
+  /*line-width: 5;*/
+  /*polygon-pattern-file: url(http://com.cartodb.users-assets.production.s3.amazonaws.com/patterns/dots_2px_fast.png);*/
+  /*polygon-pattern-opacity: 0.4;*/
+}
+
+/*#state_squares_rtw_states_data [ rtw_or_not = "Not RTW"] {
+   line-color:green;
+   line-width: 5;
+  line-opacity: 1;
+}
+#state_squares_rtw_states_data [ rtw_or_not = "RTW"] {
+   line-color:blue;
+   line-width: 5;
+  line-opacity: 1;
+}*/
+
+</style>
+<style type='cartocss/text' id='bubble-wage'>
+  /** bubble visualization */
+
+  #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo{
+    marker-fill-opacity: 0.9;
+    marker-line-color: #FFF;
+    marker-line-width: 1;
+    marker-line-opacity: 1;
+    marker-placement: point;
+    marker-multi-policy: largest;
+    marker-type: ellipse;
+    marker-fill: #11002F;
+    marker-allow-overlap: true;
+    marker-clip: false;
+  }
+  #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ min_wage <= 10.5] {
+    marker-width: 65.0;
+  }
+  #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ min_wage <= 9.875] {
+    marker-width: 59.4;
+  }
+  #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ min_wage <= 9.535] {
+    marker-width: 53.9;
+  }
+  #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ min_wage <= 9.125] {
+    marker-width: 48.3;
+  }
+  #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ min_wage <= 8.65] {
+    marker-width: 42.8;
+  }
+  #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ min_wage <= 8.44] {
+    marker-width: 37.2;
+  }
+  #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ min_wage <= 8.28] {
+    marker-width: 31.7;
+  }
+  #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ min_wage <= 8.075] {
+    marker-width: 26.1;
+  }
+  #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ min_wage <= 7.825] {
+    marker-width: 20.6;
+  }
+  #us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo [ min_wage <= 7.375] {
+    marker-width: 15.0;
+  }
+</style>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <!-- top navbar -->
+<!--  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Right to Work States</a>
+      </div>
+    </div>
+  </div> -->
+
+
+  <div id="container">
+    <div class="row row-offcanvas row-offcanvas-left">
+      <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+        <div id="layer_selector" class="cartodb-infobox">
+          <h5><a href="#percent-uninsured" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Percent uninsured</a></h5>
+          <ul class="collapse" id="percent-uninsured">
+            <li data="all" data-type="cartocss" data-param="bubble-uninsured" class="uninsured-rate">All states</li>
+            <li data="<= 13" data-type="cartocss"  data-param="bubble-uninsured" class="uninsured-rate">13% or less uninsured</li>
+            <li data="> 13" data-type="cartocss" data-param="bubble-uninsured" class="uninsured-rate">more than 13% uninsured</li>
+          </ul>
+          <h5><a href="#percent-unionized" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Percent unionized</a></h5>
+          <ul class="collapse" id="percent-unionized">
+            <li data="all" data-type="cartocss" data-param="bubble-unionized" class="unionized-rate">All states</li>
+            <li data="<= 10" data-type="cartocss" data-param="bubble-unionized" class="unionized-rate">10% or less unionized</li>
+            <li data="> 10" data-type="cartocss" data-param="bubble-unionized" class="unionized-rate">more than 10% unionized</li>
+          </ul>
+          <h5><a href="#percent-poverty" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Percent poverty</a></h5>
+          <ul class="collapse" id="percent-poverty">
+
+            <li data="all" data-type="cartocss" data-param="bubble-poverty" class="poverty-rate">All states</li>
+            <li data="<= 15" data-type="cartocss" data-param="bubble-poverty" class="poverty-rate">15% or fewer residents in poverty</li>
+            <li data="> 15" data-type="cartocss" data-param="bubble-poverty" class="poverty-rate">more than 15% residents in poverty</li>
+          </ul>
+          <h5><a href="#amt-min-wage" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Minimum wage</a></h5>
+          <ul class="collapse" id="amt-min-wage">
+
+            <li data="all" data-type="cartocss" data-param="bubble-wage-all" class="min-wage">All states</li>
+            <li data="<= 8" data-type="cartocss" data-param="bubble-wage-less-8" class="min-wage">Minimum wage is $8 or less</li>
+            <li data="> 8" data-type="cartocss" data-param="bubble-wage-more-8" class="min-wage">Minimum wage is more than $8</li>
+          </ul>
+          <ul>
+            <li>RESET</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="map"></div>
+
+  </div><!-- /.container -->
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- include cartodb.js library -->
+<script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<!-- <script src="odyssey.js"></script> -->
+<script src="http://cartodb.github.io/odyssey.js/dist/odyssey.js" charset="UTF-8"></script>
+<script type="text/javascript">
+function click(el) {
+  var element = O.Core.getElement(el);
+  var t = O.Trigger();
+  element.onclick = function() {
+    t.trigger();
+  }
+  return t;
+}
+
+O.Template({
+  init: function() {
+    var seq = O.Triggers.Sequential();
+
+    var baseurl = this.baseurl = 'http://{s}.api.cartocdn.com/base-light/{z}/{x}/{y}.png';
+    var map = this.map = L.map('map').setView([0, 0.0], 4);
+    var basemap = this.basemap = L.tileLayer(baseurl, {
+      attribution: 'data OSM - map CartoDB'
+    }).addTo(map);
+
+    // enable keys to move
+    O.Keys().on('map').left().then(seq.prev, seq)
+    O.Keys().on('map').right().then(seq.next, seq)
+
+    click(document.getElementsByClassName('next')).then(seq.next, seq)
+    click(document.getElementsByClassName('prev')).then(seq.prev, seq)
+
+    var slides = O.Actions.Slides('slides');
+    var story = O.Story()
+
+    this.story = story;
+    this.seq = seq;
+    this.slides = slides;
+    this.progress = O.UI.DotProgress('dots').count(0);
+  },
+
+  update: function(actions) {
+    if (!actions.length) return;
+    this.story.clear();
+
+    // update footer title and author
+    var title_ = actions.global.title === undefined ? '' : actions.global.title,
+        author_ = actions.global.author === undefined ? 'Using' : 'By '+actions.global.author+' using';
+
+    document.getElementById('title').innerHTML = title_;
+    document.getElementById('author').innerHTML = author_;
+    document.title = title_ + " | " + author_ +' Odyssey.js';
+
+    var sl = actions;
+
+    document.getElementById('slides').innerHTML = ''
+    this.progress.count(sl.length);
+
+    // create new story
+    for(var i = 0; i < sl.length; ++i) {
+      var slide = sl[i];
+      var tmpl = "&lt;div class='slide' style='diplay:none'&gt;"
+      tmpl += slide.html();
+      tmpl += "&lt;/div&gt;";
+      document.getElementById('slides').innerHTML += tmpl;
+
+      this.progress.step(i).then(this.seq.step(i), this.seq)
+
+      var actions = O.Parallel(
+        this.slides.activate(i),
+        slide(this),
+        this.progress.activate(i)
+      );
+
+      this.story.addState(
+        this.seq.step(i),
+        actions
+      )
+    }
+    this.story.go(this.seq.current());
+  },
+
+  changeSlide: function(n) {
+    this.seq.current(n);
+  }
+});
+</script>
+<script src="scripts2.js"></script>
+
+
+</html>
