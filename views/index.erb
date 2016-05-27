@@ -8,8 +8,71 @@
 	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
+	<!-- cartocss for wage gap toggle -->
+	<style type="cartocss/css" id="wage-gap-less-80">
+		/*minimum wage less than $8*/
+
+		#wage_gap_by_state_merge::labels {
+			text-name: [what_a_woman_makes_for_every_dollar_a_man_makes] + '%';
+			text-face-name: 'Open Sans Regular';
+			text-size: 10;
+			text-label-position-tolerance: 10;
+			text-fill: #000;
+			text-halo-fill: #FFFFFF;
+			text-halo-radius: 0 ;
+			text-dy: 10;
+			text-allow-overlap: false;
+			text-placement: point;
+			text-placement-type: simple;
+		}
+
+		#wage_gap_by_state_merge [ what_a_woman_makes_for_every_dollar_a_man_makes > 80] {
+			polygon-fill: #FFF;
+			polygon-opacity: .9;
+
+			line-width:6;
+			line-color:#FFF;
+		}
+		#wage_gap_by_state_merge [ what_a_woman_makes_for_every_dollar_a_man_makes = null] {
+			polygon-fill: #FFF;
+			polygon-opacity: 1;
+			line-width:6;
+			line-color:#FFF;
+		}
+	</style>
+	<style type="cartocss/css" id="wage-gap-more-80">
+		/*minimum wage more than $8*/
+
+		#wage_gap_by_state_merge::labels {
+			text-name: '$' + [what_a_woman_makes_for_every_dollar_a_man_makes];
+			text-face-name: 'Open Sans Regular';
+			text-size: 10;
+			text-label-position-tolerance: 10;
+			text-fill: #000;
+			text-halo-fill: #FFFFFF;
+			text-halo-radius: 0;
+			text-dy: 10;
+			text-allow-overlap: false;
+			text-placement: point;
+			text-placement-type: simple;
+		}
+
+		#wage_gap_by_state_merge [ what_a_woman_makes_for_every_dollar_a_man_makes <= 80] {
+			polygon-fill: #FFF;
+			polygon-opacity: .9;
+			line-width:6;
+			line-color:#FFF;
+		}
+		#wage_gap_by_state_merge [ what_a_woman_makes_for_every_dollar_a_man_makes = null] {
+			polygon-fill: #FFF;
+			polygon-opacity: 1;
+			line-width:6;
+			line-color:#FFF;
+		}
+	</style>
+
 	<!-- cartocss for min wage toggle -->
-	<style type="cartocss/css" id="wage-less-8">
+	<style type="cartocss/css" id="min-wage-less-8">
 		/*minimum wage less than $8*/
 
 		#state_squares_rtw_states_data::labels {
@@ -40,7 +103,7 @@
 			line-color:#FFF;
 		}
 	</style>
-	<style type="cartocss/css" id="wage-more-8">
+	<style type="cartocss/css" id="min-wage-more-8">
 		/*minimum wage more than $8*/
 
 		#state_squares_rtw_states_data::labels {
@@ -285,11 +348,17 @@
   	<div class="row row-offcanvas row-offcanvas-left">
   		<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
   			<div id="layer_selector" class="cartodb-infobox">
+
+  				<h5><a href="#gender-wage-gap" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Gender wage gap</a></h5>
+  				<ul class="collapse" id="gender-wage-gap">
+  					<li data="<= 10" data-type="cartocss" data-param="wage-gap-less-80" class="wage-gap">Women's earnings less than 80% of men's earnings</li>
+  					<li data="> 10" data-type="cartocss" data-param="wage-gap-more-80" class="wage-gap">Women's earnings 80% or more of men's earnings</li>
+  				</ul>
   				
   				<h5><a href="#amt-min-wage" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Minimum wage</a></h5>
   				<ul class="collapse" id="amt-min-wage">
-  					<li data="<= 8" data-type="cartocss" data-param="wage-less-8" class="min-wage">Minimum wage is $8 or less</li>
-  					<li data="> 8" data-type="cartocss" data-param="wage-more-8" class="min-wage">Minimum wage is more than $8</li>
+  					<li data="<= 8" data-type="cartocss" data-param="min-wage-less-8" class="min-wage">Minimum wage is $8 or less</li>
+  					<li data="> 8" data-type="cartocss" data-param="min-wage-more-8" class="min-wage">Minimum wage is more than $8</li>
   				</ul>
 
   				<h5><a href="#percent-poverty" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Percent poverty</a></h5>
@@ -309,6 +378,7 @@
   					<li data="<= 10" data-type="cartocss" data-param="unionized-less-10" class="unionized-rate">10% or less unionized</li>
   					<li data="> 10" data-type="cartocss" data-param="unionized-more-10" class="unionized-rate">more than 10% unionized</li>
   				</ul>
+
   				<ul>
   					<li>RESET</li>
   				</ul>

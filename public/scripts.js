@@ -54,6 +54,19 @@ function main() {
     // you can get the native map to work with it
     var map = vis.getNativeMap();
 
+        // create wage gap sublayer
+        cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json')
+        .addTo(map)
+        .done(function(layer){
+          var subLayer = layer.getSubLayer(0);
+
+      // hide points in this layer
+      subLayer.hide();
+
+      // create selector for this layer
+      createSelector(subLayer, '#layer_selector li.wage-gap');
+    })
+
     // create minimum wage sublayer
     cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/cfefc586-0318-11e6-9de5-0ea31932ec1d/viz.json')
     .addTo(map)
