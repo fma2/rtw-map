@@ -7,7 +7,7 @@ function createSelector(layer, selector) {
     var filter = $li.attr('data');
     var type = $li.data('type');
     var param = $li.data('param');
-    
+
     // deselect all and select the clicked one
     $options.removeClass('selected');
     $li.addClass('selected');
@@ -78,12 +78,10 @@ function main() {
 
       // create selector for this layer
       createSelector(subLayer, '#layer_selector li.poverty-rate');
-
-      // createSelector(subLayer, '#layer_selector li.poverty-rate', 'us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo', 'income_povery_rate_percent');
     })  
     
     // create percent uninsured sublayer
-    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/cddae736-fa98-11e5-8fa8-0e5db1731f59/viz.json')
+    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/cfefc586-0318-11e6-9de5-0ea31932ec1d/viz.json')
     .addTo(map)
     .done(function(layer){
       var subLayer = layer.getSubLayer(0);
@@ -92,11 +90,11 @@ function main() {
       subLayer.hide();
 
       // create selector for this layer
-      createSelector(subLayer, '#layer_selector li.uninsured-rate', 'us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo', 'uninsured_rate_percent');
+      createSelector(subLayer, '#layer_selector li.uninsured-rate');
     })
 
     // create percent unionized sublayer
-    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/159ae39a-fa9a-11e5-88b6-0e674067d321/viz.json')
+    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/cfefc586-0318-11e6-9de5-0ea31932ec1d/viz.json')
     .addTo(map)
     .done(function(layer){
       var subLayer = layer.getSubLayer(0);
@@ -105,7 +103,7 @@ function main() {
       subLayer.hide();
 
       // create selector for this layer
-      createSelector(subLayer, '#layer_selector li.unionized-rate', 'us_states_with_ak_hi_carto_db_rtw_assets_opp_with_geo', 'percent_union');
+      createSelector(subLayer, '#layer_selector li.unionized-rate');
     })
   })
   .error(function(err) {
