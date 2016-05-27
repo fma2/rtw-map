@@ -12,8 +12,8 @@
 	<style type="cartocss/css" id="wage-gap-less-80">
 		/*minimum wage less than $8*/
 
-		#wage_gap_by_state_merge::labels {
-			text-name: [what_a_woman_makes_for_every_dollar_a_man_makes] + '%';
+		#state_squares_rtw_assets_with_wage_gap::labels {
+			text-name: [wage_gap] + "%" ;
 			text-face-name: 'Open Sans Regular';
 			text-size: 10;
 			text-label-position-tolerance: 10;
@@ -26,14 +26,14 @@
 			text-placement-type: simple;
 		}
 
-		#wage_gap_by_state_merge [ what_a_woman_makes_for_every_dollar_a_man_makes > 80] {
+		#state_squares_rtw_assets_with_wage_gap [ wage_gap > 21] {
 			polygon-fill: #FFF;
 			polygon-opacity: .9;
 
 			line-width:6;
 			line-color:#FFF;
 		}
-		#wage_gap_by_state_merge [ what_a_woman_makes_for_every_dollar_a_man_makes = null] {
+		#state_squares_rtw_assets_with_wage_gap [ wage_gap = null] {
 			polygon-fill: #FFF;
 			polygon-opacity: 1;
 			line-width:6;
@@ -43,8 +43,8 @@
 	<style type="cartocss/css" id="wage-gap-more-80">
 		/*minimum wage more than $8*/
 
-		#wage_gap_by_state_merge::labels {
-			text-name: [what_a_woman_makes_for_every_dollar_a_man_makes] + '%';
+		#state_squares_rtw_assets_with_wage_gap::labels {
+			text-name: [wage_gap] + '%';
 			text-face-name: 'Open Sans Regular';
 			text-size: 10;
 			text-label-position-tolerance: 10;
@@ -57,13 +57,13 @@
 			text-placement-type: simple;
 		}
 
-		#wage_gap_by_state_merge [ what_a_woman_makes_for_every_dollar_a_man_makes <= 80] {
+		#state_squares_rtw_assets_with_wage_gap [ wage_gap <= 21] {
 			polygon-fill: #FFF;
 			polygon-opacity: .9;
 			line-width:6;
 			line-color:#FFF;
 		}
-		#wage_gap_by_state_merge [ what_a_woman_makes_for_every_dollar_a_man_makes = null] {
+		#state_squares_rtw_assets_with_wage_gap [ wage_gap = null] {
 			polygon-fill: #FFF;
 			polygon-opacity: 1;
 			line-width:6;
@@ -75,7 +75,7 @@
 	<style type="cartocss/css" id="min-wage-less-8">
 		/*minimum wage less than $8*/
 
-		#state_squares_rtw_states_data::labels {
+		#state_squares_rtw_assets_with_wage_gap::labels {
 			text-name: '$' + [min_wage];
 			text-face-name: 'Open Sans Regular';
 			text-size: 10;
@@ -89,14 +89,14 @@
 			text-placement-type: simple;
 		}
 
-		#state_squares_rtw_states_data [ min_wage > 8] {
+		#state_squares_rtw_assets_with_wage_gap [ min_wage > 8] {
 			polygon-fill: #FFF;
 			polygon-opacity: .9;
 
 			line-width:6;
 			line-color:#FFF;
 		}
-		#state_squares_rtw_states_data [ min_wage = null] {
+		#state_squares_rtw_assets_with_wage_gap [ min_wage = null] {
 			polygon-fill: #FFF;
 			polygon-opacity: 1;
 			line-width:6;
@@ -106,7 +106,7 @@
 	<style type="cartocss/css" id="min-wage-more-8">
 		/*minimum wage more than $8*/
 
-		#state_squares_rtw_states_data::labels {
+		#state_squares_rtw_assets_with_wage_gapi::labels {
 			text-name: '$' + [min_wage];
 			text-face-name: 'Open Sans Regular';
 			text-size: 10;
@@ -120,13 +120,13 @@
 			text-placement-type: simple;
 		}
 
-		#state_squares_rtw_states_data [ min_wage <= 8] {
+		#state_squares_rtw_assets_with_wage_gap [ min_wage <= 8] {
 			polygon-fill: #FFF;
 			polygon-opacity: .9;
 			line-width:6;
 			line-color:#FFF;
 		}
-		#state_squares_rtw_states_data [ min_wage = null] {
+		#state_squares_rtw_assets_with_wage_gap [ min_wage = null] {
 			polygon-fill: #FFF;
 			polygon-opacity: 1;
 			line-width:6;
@@ -138,7 +138,7 @@
 	<style type="cartocss/css" id="poverty-less-15">
 		/*income poverty rate less 15*/
 
-		#state_squares_rtw_states_data::labels {
+		#state_squares_rtw_assets_with_wage_gap::labels {
 			text-name: [income_poverty_rate_percent] + '%';
 			text-face-name: 'Open Sans Regular';
 			text-size: 10;
@@ -152,14 +152,14 @@
 			text-placement-type: simple;
 		}
 
-		#state_squares_rtw_states_data [income_poverty_rate_percent > 15] {
+		#state_squares_rtw_assets_with_wage_gap [income_poverty_rate_percent > 15] {
 			polygon-fill: #FFF;
 			polygon-opacity: .9;
 
 			line-width:6;
 			line-color:#FFF;
 		}
-		#state_squares_rtw_states_data [income_poverty_rate_percent = null] {
+		#state_squares_rtw_assets_with_wage_gap [income_poverty_rate_percent = null] {
 			polygon-fill: #FFF;
 			polygon-opacity: 1;
 			line-width:6;
@@ -169,7 +169,7 @@
 	<style type="cartocss/css" id="poverty-more-15">
 		/*income poverty rate more 15*/
 
-		#state_squares_rtw_states_data::labels {
+		#state_squares_rtw_assets_with_wage_gap::labels {
 			text-name: [income_poverty_rate_percent] + '%';
 			text-face-name: 'Open Sans Regular';
 			text-size: 10;
@@ -183,14 +183,14 @@
 			text-placement-type: simple;
 		}
 
-		#state_squares_rtw_states_data [income_poverty_rate_percent <= 15] {
+		#state_squares_rtw_assets_with_wage_gap [income_poverty_rate_percent <= 15] {
 			polygon-fill: #FFF;
 			polygon-opacity: .9;
 
 			line-width:6;
 			line-color:#FFF;
 		}
-		#state_squares_rtw_states_data [income_poverty_rate_percent = null] {
+		#state_squares_rtw_assets_with_wage_gap [income_poverty_rate_percent = null] {
 			polygon-fill: #FFF;
 			polygon-opacity: 1;
 			line-width:6;
@@ -202,7 +202,7 @@
 	<style type="cartocss/css" id="uninsured-less-13">
 		/*uninsured rate less 13*/
 
-		#state_squares_rtw_states_data::labels {
+		#state_squares_rtw_assets_with_wage_gap::labels {
 			text-name: [uninsured_rate_percent] + '%';
 			text-face-name: 'Open Sans Regular';
 			text-size: 10;
@@ -216,14 +216,14 @@
 			text-placement-type: simple;
 		}
 
-		#state_squares_rtw_states_data [uninsured_rate_percent > 13] {
+		#state_squares_rtw_assets_with_wage_gap [uninsured_rate_percent > 13] {
 			polygon-fill: #FFF;
 			polygon-opacity: .9;
 
 			line-width:6;
 			line-color:#FFF;
 		}
-		#state_squares_rtw_states_data [uninsured_rate_percent = null] {
+		#state_squares_rtw_assets_with_wage_gap [uninsured_rate_percent = null] {
 			polygon-fill: #FFF;
 			polygon-opacity: 1;
 			line-width:6;
@@ -233,7 +233,7 @@
 	<style type="cartocss/css" id="uninsured-more-13">
 		/*uninsured rate more 13*/
 
-		#state_squares_rtw_states_data::labels {
+		#state_squares_rtw_assets_with_wage_gap::labels {
 			text-name: [uninsured_rate_percent] + '%';
 			text-face-name: 'Open Sans Regular';
 			text-size: 10;
@@ -247,14 +247,14 @@
 			text-placement-type: simple;
 		}
 
-		#state_squares_rtw_states_data [uninsured_rate_percent <= 13] {
+		#state_squares_rtw_assets_with_wage_gap [uninsured_rate_percent <= 13] {
 			polygon-fill: #FFF;
 			polygon-opacity: .9;
 
 			line-width:6;
 			line-color:#FFF;
 		}
-		#state_squares_rtw_states_data [uninsured_rate_percent = null] {
+		#state_squares_rtw_assets_with_wage_gap [uninsured_rate_percent = null] {
 			polygon-fill: #FFF;
 			polygon-opacity: 1;
 			line-width:6;
@@ -266,7 +266,7 @@
 	<style type="cartocss/css" id="unionized-less-10">
 		/*percent union less 10*/
 
-		#state_squares_rtw_states_data::labels {
+		#state_squares_rtw_assets_with_wage_gap::labels {
 			text-name: [percent_union] + '%';
 			text-face-name: 'Open Sans Regular';
 			text-size: 10;
@@ -280,14 +280,14 @@
 			text-placement-type: simple;
 		}
 
-		#state_squares_rtw_states_data [percent_union > 10] {
+		#state_squares_rtw_assets_with_wage_gap [percent_union > 10] {
 			polygon-fill: #FFF;
 			polygon-opacity: .9;
 
 			line-width:6;
 			line-color:#FFF;
 		}
-		#state_squares_rtw_states_data [percent_union = null] {
+		#state_squares_rtw_assets_with_wage_gap [percent_union = null] {
 			polygon-fill: #FFF;
 			polygon-opacity: 1;
 			line-width:6;
@@ -297,7 +297,7 @@
 	<style type="cartocss/css" id="unionized-more-10">
 		/*uninsured rate more 13*/
 
-		#state_squares_rtw_states_data::labels {
+		#state_squares_rtw_assets_with_wage_gap::labels {
 			text-name: [percent_union] + '%';
 			text-face-name: 'Open Sans Regular';
 			text-size: 10;
@@ -311,14 +311,14 @@
 			text-placement-type: simple;
 		}
 
-		#state_squares_rtw_states_data [percent_union <= 10] {
+		#state_squares_rtw_assets_with_wage_gap [percent_union <= 10] {
 			polygon-fill: #FFF;
 			polygon-opacity: .9;
 
 			line-width:6;
 			line-color:#FFF;
 		}
-		#state_squares_rtw_states_data [percent_union = null] {
+		#state_squares_rtw_assets_with_wage_gap [percent_union = null] {
 			polygon-fill: #FFF;
 			polygon-opacity: 1;
 			line-width:6;
@@ -351,8 +351,9 @@
 
   				<h5><a href="#gender-wage-gap" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Gender wage gap</a></h5>
   				<ul class="collapse" id="gender-wage-gap">
-  					<li data="<= 10" data-type="cartocss" data-param="wage-gap-less-80" class="wage-gap">Women's earnings less than 80% of men's earnings</li>
-  					<li data="> 10" data-type="cartocss" data-param="wage-gap-more-80" class="wage-gap">Women's earnings 80% or more of men's earnings</li>
+  					<p>The “wage gap” is the additional money a woman would have to make for every dollar made by a man in order to have equal annual earnings.</p>
+  					<li data="<= 20" data-type="cartocss" data-param="wage-gap-less-80" class="wage-gap">Wage gap is 21% or less</li> 					
+  					<li data="> 20" data-type="cartocss" data-param="wage-gap-more-80" class="wage-gap">Wage gap is more than 21%</li>
   				</ul>
   				
   				<h5><a href="#amt-min-wage" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Minimum wage</a></h5>

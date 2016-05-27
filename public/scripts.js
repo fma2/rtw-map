@@ -32,7 +32,7 @@ function createSelector(layer, selector) {
 }
 
 function main() {
-  cartodb.createVis('map', 'https://fma2.cartodb.com/api/v2/viz/a2d6d490-0282-11e6-9390-0e31c9be1b51/viz.json', 
+  cartodb.createVis('map', 'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json', 
   {
     shareable: true,
     tiles_loader: true,
@@ -68,7 +68,7 @@ function main() {
     })
 
     // create minimum wage sublayer
-    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/cfefc586-0318-11e6-9de5-0ea31932ec1d/viz.json')
+    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json')
     .addTo(map)
     .done(function(layer){
       var subLayer = layer.getSubLayer(0);
@@ -81,7 +81,7 @@ function main() {
     }) 
 
     // create poverty rate sublayer
-    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/cfefc586-0318-11e6-9de5-0ea31932ec1d/viz.json')
+    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json')
     .addTo(map)
     .done(function(layer){
       var subLayer = layer.getSubLayer(0);
@@ -94,7 +94,7 @@ function main() {
     })  
     
     // create percent uninsured sublayer
-    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/cfefc586-0318-11e6-9de5-0ea31932ec1d/viz.json')
+    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json')
     .addTo(map)
     .done(function(layer){
       var subLayer = layer.getSubLayer(0);
@@ -107,7 +107,7 @@ function main() {
     })
 
     // create percent unionized sublayer
-    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/cfefc586-0318-11e6-9de5-0ea31932ec1d/viz.json')
+    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json')
     .addTo(map)
     .done(function(layer){
       var subLayer = layer.getSubLayer(0);
