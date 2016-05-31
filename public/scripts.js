@@ -34,8 +34,8 @@ function createSelector(layer, selector) {
     } else { 
       $options.show();
       $(this).toggle(function(){});
+      $(href).toggle(function(){});
       layer.hide();
-      $(href).show();
 
     }
   });
