@@ -1,40 +1,50 @@
 function createSelector(layer, selector) {
   var sql = new cartodb.SQL({ user: 'fma2' });
   var $options = $(selector);
+
+  // console.log
   $options.click(function(e) {
     // get the area of the selected layer
     var $li = $(e.target);
+    var type = $li.data('type');
     var filter = $li.attr('data');
     var type = $li.data('type');
     var param = $li.data('param');
+    var id = $($options.parent()).attr("id");
+    var href = "a[href=#"+ id + "]"
 
     // deselect all and select the clicked one
     $options.removeClass('selected');
-    $li.addClass('selected');
-    // create query based on data from the layer
-    // var query = "select * from " + dataset;
+    $li.toggleClass('selected');
 
-    // if(filter !== 'all') {
-    //   query = "select * from " + dataset + " where " + col + filter;
-    // }
-
+    // set cartoCSS based on data from the layer
     if (type === "cartocss") {
+
+      $options.not($(this)).toggle(function(){
+        $(this).css("color", "black")
+      });
       condition = $('#'+param).text();
       layer.setCartoCSS(condition);
-    } else {
+
+      $(href).toggle();
+      // show layer with new cartoCSS
+      layer.toggle();
+
+    // handling back button
+    } else { 
+      $options.show();
+      $(this).hide();
+      layer.hide();
+      $(href).show();
 
     }
-
-    // change the query in the layer to update the map // THIS MIGHT BE ABLE TO BE REFACTORED WITH ABOVE
-    // layer.setSQL(query);
-    layer.show();
   });
 }
 
 function main() {
   cartodb.createVis('map', 'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json', 
   {
-    shareable: true,
+    // shareable: true,
     tiles_loader: true,
     zoom: 6
     // center_lat: 0,
@@ -54,11 +64,11 @@ function main() {
     // you can get the native map to work with it
     var map = vis.getNativeMap();
 
-        // create wage gap sublayer
-        cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json')
-        .addTo(map)
-        .done(function(layer){
-          var subLayer = layer.getSubLayer(0);
+    // create wage gap sublayer
+    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json')
+    .addTo(map)
+    .done(function(layer){
+      var subLayer = layer.getSubLayer(0);
 
       // hide points in this layer
       subLayer.hide();
@@ -125,9 +135,23 @@ function main() {
 }
 
 $(document).ready(function() {
-  $('[data-toggle=offcanvas]').click(function() {
-    $('.row-offcanvas').toggleClass('active');
-  });
+  // $('[data-toggle=offcanvas]').click(function() {
+  //   $('.row-offcanvas').toggleClass('active');
+  // });
+
+  // $("#sidebar").toggleClass("collapsed");
+  // $("#content").toggleClass("col-md-12 col-md-9");
+
+  $("#layer_list h5 a").click(function(){
+    $("#layer_list h5").not($(this).parent()).toggle();
+    $(this).toggleClass('list-group-item-info');
+    $(this).children('span.back').toggle();
+    $(this).children('span.title').toggle();
+  })
+
+  $("span.back").hide();
+  $("li.back").hide();
+
 });
 
 window.onload = main;
