@@ -26,14 +26,14 @@ function createSelector(layer, selector) {
       condition = $('#'+param).text();
       layer.setCartoCSS(condition);
 
-      $(href).toggle();
+      $(href).toggle(function(){});
       // show layer with new cartoCSS
       layer.toggle();
 
     // handling back button
     } else { 
       $options.show();
-      $(this).hide();
+      $(this).toggle(function(){});
       layer.hide();
       $(href).show();
 
