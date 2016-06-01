@@ -3,14 +3,14 @@
 <head>
 	<title>Right-to-work</title>
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-i"/>
 	<link rel="shortcut icon" href="http://cartodb.com/assets/favicon.ico" />
 	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
 	<!-- cartocss for wage gap toggle -->
-	<style type="cartocss/css" id="wage-gap-less-80">
-		/*minimum wage less than $8*/
+	<style type="cartocss/css" id="wage-gap-less-21">
+		/*wage gap less than 21 c*/
 
 		#state_squares_rtw_assets_with_wage_gap::labels {
 			text-name: [wage_gap] + " c" ;
@@ -40,8 +40,8 @@
 			line-color:#FFF;
 		}
 	</style>
-	<style type="cartocss/css" id="wage-gap-more-80">
-		/*minimum wage more than $8*/
+	<style type="cartocss/css" id="wage-gap-more-21">
+		/*minimum wage more than 21 c*/
 
 		#state_squares_rtw_assets_with_wage_gap::labels {
 			text-name: [wage_gap] + ' c';
@@ -72,7 +72,7 @@
 	</style>
 
 	<!-- cartocss for min wage toggle -->
-	<style type="cartocss/css" id="min-wage-less-8">
+	<style type="cartocss/css" id="min-wage-less-7-25">
 		/*minimum wage less than $8*/
 
 		#state_squares_rtw_assets_with_wage_gap::labels {
@@ -103,7 +103,7 @@
 			line-color:#FFF;
 		}
 	</style>
-	<style type="cartocss/css" id="min-wage-more-8">
+	<style type="cartocss/css" id="min-wage-more-7-25">
 		/*minimum wage more than $8*/
 
 		#state_squares_rtw_assets_with_wage_gapi::labels {
@@ -135,8 +135,8 @@
 	</style>
 	
 	<!-- cartocss for percent poverty toggle -->
-	<style type="cartocss/css" id="poverty-less-15">
-		/*income poverty rate less 15*/
+	<style type="cartocss/css" id="poverty-less-14-5">
+		/*income poverty rate less 14.5*/
 
 		#state_squares_rtw_assets_with_wage_gap::labels {
 			text-name: [income_poverty_rate_percent] + '%';
@@ -152,7 +152,7 @@
 			text-placement-type: simple;
 		}
 
-		#state_squares_rtw_assets_with_wage_gap [income_poverty_rate_percent > 15] {
+		#state_squares_rtw_assets_with_wage_gap [income_poverty_rate_percent > 14.5] {
 			polygon-fill: #FFF;
 			polygon-opacity: .9;
 
@@ -166,8 +166,8 @@
 			line-color:#FFF;
 		}
 	</style>
-	<style type="cartocss/css" id="poverty-more-15">
-		/*income poverty rate more 15*/
+	<style type="cartocss/css" id="poverty-more-14-5">
+		/*income poverty rate more 14.5*/
 
 		#state_squares_rtw_assets_with_wage_gap::labels {
 			text-name: [income_poverty_rate_percent] + '%';
@@ -183,7 +183,7 @@
 			text-placement-type: simple;
 		}
 
-		#state_squares_rtw_assets_with_wage_gap [income_poverty_rate_percent <= 15] {
+		#state_squares_rtw_assets_with_wage_gap [income_poverty_rate_percent <= 14.5] {
 			polygon-fill: #FFF;
 			polygon-opacity: .9;
 
@@ -399,24 +399,24 @@
   							<ul class="collapse" id="gender-wage-gap">
   								<h4>Gender wage gap</h4>
   								<p>The “wage gap” is the additional money a woman would have to make for every dollar made by a man in order to have equal annual earnings. Nationally, the wage gap is 21&#162;.</p>
-  								<li data="<= 20" data-type="cartocss" data-param="wage-gap-less-80" class="wage-gap">Wage gap is 21&#162; or less</li> 					
-  								<li data="> 20" data-type="cartocss" data-param="wage-gap-more-80" class="wage-gap">Wage gap is more than 21&#162;</li>
+  								<li data="<= 21" data-type="cartocss" data-param="wage-gap-less-21" class="wage-gap">Wage gap is 21&#162; or less</li> 					
+  								<li data="> 21" data-type="cartocss" data-param="wage-gap-more-21" class="wage-gap">Wage gap is more than 21&#162;</li>
   								<li class="back wage-gap">Back</li>
   							</ul>
 
   							<ul class="collapse" id="amt-min-wage">
   								<h4>Minimum wage</h4>
   								<p>The federal minimum wage is $7.25 per hour.</p>
-  								<li data="<= 8" data-type="cartocss" data-param="min-wage-less-8" class="min-wage">Minimum wage is $7.25 or less</li>
-  								<li data="> 8" data-type="cartocss" data-param="min-wage-more-8" class="min-wage">Minimum wage is more than $7.25</li>
+  								<li data="<= 7.25" data-type="cartocss" data-param="min-wage-less-7-25" class="min-wage">Minimum wage is $7.25 or less</li>
+  								<li data="> 7.25" data-type="cartocss" data-param="min-wage-more-7-25" class="min-wage">Minimum wage is more than $7.25</li>
   								<li class="back min-wage">Back</li>
   							</ul>
 
   							<ul class="collapse" id="percent-poverty">
   								<h4>Percent poverty</h4>
   								<p>"In 2013, the official poverty rate in the US was 14.5 percent."</p>
-  								<li data="<= 15" data-type="cartocss" data-param="poverty-less-15" class="poverty-rate">15% or fewer residents in poverty</li>
-  								<li data="> 15" data-type="cartocss" data-param="poverty-more-15" class="poverty-rate">more than 15% residents in poverty</li>
+  								<li data="<= 14.5" data-type="cartocss" data-param="poverty-less-14-5" class="poverty-rate">14.5% or fewer residents in poverty</li>
+  								<li data="> 14.5" data-type="cartocss" data-param="poverty-more-14-5" class="poverty-rate">more than 14.5% residents in poverty</li>
   								<li class="back poverty-rate">Back</li>
 
   							</ul>
