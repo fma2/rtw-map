@@ -89,7 +89,7 @@
 			text-placement-type: simple;
 		}
 
-		#state_squares_rtw_assets_with_wage_gap [ min_wage > 8] {
+		#state_squares_rtw_assets_with_wage_gap [ min_wage > 7.25] {
 			polygon-fill: #FFF;
 			polygon-opacity: .9;
 
@@ -120,7 +120,7 @@
 			text-placement-type: simple;
 		}
 
-		#state_squares_rtw_assets_with_wage_gap [ min_wage <= 8] {
+		#state_squares_rtw_assets_with_wage_gap [ min_wage <= 7.25] {
 			polygon-fill: #FFF;
 			polygon-opacity: .9;
 			line-width:6;
@@ -406,13 +406,15 @@
 
   							<ul class="collapse" id="amt-min-wage">
   								<h4>Minimum wage</h4>
-  								<li data="<= 8" data-type="cartocss" data-param="min-wage-less-8" class="min-wage">Minimum wage is $8 or less</li>
-  								<li data="> 8" data-type="cartocss" data-param="min-wage-more-8" class="min-wage">Minimum wage is more than $8</li>
+  								<p>The federal minimum wage is $7.25 per hour.</p>
+  								<li data="<= 8" data-type="cartocss" data-param="min-wage-less-8" class="min-wage">Minimum wage is $7.25 or less</li>
+  								<li data="> 8" data-type="cartocss" data-param="min-wage-more-8" class="min-wage">Minimum wage is more than $7.25</li>
   								<li class="back min-wage">Back</li>
   							</ul>
 
   							<ul class="collapse" id="percent-poverty">
   								<h4>Percent poverty</h4>
+  								<p>"In 2013, the official poverty rate in the US was 14.5 percent."</p>
   								<li data="<= 15" data-type="cartocss" data-param="poverty-less-15" class="poverty-rate">15% or fewer residents in poverty</li>
   								<li data="> 15" data-type="cartocss" data-param="poverty-more-15" class="poverty-rate">more than 15% residents in poverty</li>
   								<li class="back poverty-rate">Back</li>
