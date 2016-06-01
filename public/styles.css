@@ -7,42 +7,83 @@ body {
 	/*padding-top: 50px;*/
 }
 
-#row-main {
-    overflow-x: hidden; /* necessary to hide collapsed sidebar */
-}
-
-#content {
-  -webkit-transition: width 0.3s ease;
-  -moz-transition: width 0.3s ease;
-  -o-transition: width 0.3s ease;
-  transition: width 0.3s ease;
-}
-#sidebar {
-  -webkit-transition: margin 0.3s ease;
-  -moz-transition: margin 0.3s ease;
-  -o-transition: margin 0.3s ease;
-  transition: margin 0.3s ease;
-  height: 100vh;
-}
-
-.collapsed {
-  /* hide it for small displays*/
-  display: none;
-}
-
-@media (min-width: 992px) {
-  .collapsed {
-    display: block;
-    margin-right: -25%; /* same width as sidebar */
-  }
-}
-
+/* MAP */
 #map {
 	width: auto;
 	height: 100vh;
-	box-shadow: 0 0 10px rgba(0,0,0,0.55);
   padding: 0;
   margin:0;
+}
+
+
+/*SIDEBAR*/
+
+#wrapper {
+  padding-right: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+  padding-right: 250px;
+}
+
+#sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  right: 300px;
+  width: 0;
+  height: 100%;
+  margin-right: -290px;
+  overflow-y: auto;
+  background: white;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  width: 300px;
+}
+
+#page-content-wrapper {
+  width: 100%;
+  position: absolute;
+  /*padding: 15px;*/
+}
+
+#page-content-wrapper > .container-fluid .col-lg-12 {
+  padding:0;
+}
+
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 300px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 100vh;
+}
+
+.sidebar-nav > .sidebar-brand {
+}
+
+.sidebar-nav > .sidebar-brand a {
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+  background: none;
 }
 
 li.back {
@@ -50,36 +91,85 @@ li.back {
   font-weight: 800;
 }
 
+a.list-group-item-success {
+  width:100%;
+}
+
 #layer_selector h5 {
-	font-family: "Helvetica", Arial;
-	padding: 3px 0px;
-	text-align: center;
+  font-family: "Helvetica", Arial;
+  padding: 3px 0px;
+  text-align: center;
 }
 #layer_selector ul {
-	padding: 0; margin: 0;
-	list-style-type: none;
+  padding: 0; margin: 0;
+  list-style-type: none;
 }
 #layer_selector li {
-	border-bottom: 1px solid #999;
-	padding: 15px 30px;
-	font-family: "Helvetica", Arial;
-	font-size: 13px;
-	color: #444;
-	cursor: auto;
+  border-bottom: 1px solid #999;
+  padding: 15px 30px;
+  font-family: "Helvetica", Arial;
+  font-size: 13px;
+  color: #444;
+  cursor: auto;
 }
 #layer_selector li:hover {
-	background-color: #F0F0F0;
-	cursor: pointer;
+  background-color: #F0F0F0;
+  cursor: pointer;
 }
 #layer_selector li.selected {
-	background-color: #EEE;
+  background-color: #EEE;
 }
+
+#toggle-button {
+  width: 100%;
+}
+#menu-toggle {
+  right: 60px;
+  position: absolute;
+  z-index: 9999;
+}
+
+.btn#menu-toggle {
+  border-radius: 0px;
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+
+@media(min-width:768px) {
+  #wrapper {
+    padding-right: 250px;
+  }
+
+  #wrapper.toggled {
+    padding-right: 0;
+  }
+
+  #sidebar-wrapper {
+    width: 300px;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    width: 0;
+  }
+
+  #page-content-wrapper {
+    /*padding: 20px;*/
+    position: relative;
+  }
+
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-left: 0;
+  }
+}
+
 
 
 /* LEGEND */
 div.cartodb-legend {
   border: none;
   box-shadow: rgba(0,0,0,0) 0 0 4px 2px;
+  width: 95%;
 }
 
 div.cartodb-legend.category ul li .bullet, div.cartodb-legend.color ul li .bullet, div.cartodb-legend.custom ul li .bullet {
@@ -89,8 +179,8 @@ div.cartodb-legend.category ul li .bullet, div.cartodb-legend.color ul li .bulle
 }
 div.cartodb-legend.category ul li, div.cartodb-legend.color ul li, div.cartodb-legend.custom ul li {
   height: 25px;
-  display:flex;
-  align-items:center;
+  /*display:flex;*/
+  /*align-items:center;*/
 }
 
 

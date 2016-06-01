@@ -325,141 +325,129 @@
 		}
 	</style>
 
+
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-	<!-- top navbar -->
-<!--  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Right to Work States</a>
-      </div>
-    </div>
-  </div> -->
+	<div id="wrapper">
+		<!-- Sidebar -->
+		<div id="sidebar-wrapper">
+			<div class="sidebar-nav">
+				<div class="sidebar-brand">
+					<h2>
+						<a href="/">Would you want to live in a "right-to-work" state?</a>
+					</h2>
+					<h4>Check out the difference a strong labor movement makes.</h4>
+					<p>Twenty-six states have passed “right-to-work” laws that bar labor unions from collecting agency or “fair-share” fees.  It’s a no-brainer that right-to-work laws weaken unions. But what is life like for everyone who lives in a “right-to-work” state?</p>
+					<p>[Insert copy about how to use tool]</p>
+				</div>
+				<div id="layer_selector">
+					<div id="layer_list">
+						<h5>
+							<a href="#gender-wage-gap" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
+								<span class="back">Back to menu</span>
+								<span class="title">Gender wage gap</span>
+							</a>
+						</h5>
+						<h5>
+							<a href="#amt-min-wage" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
+								<span class="back">Back to menu</span>
+								<span class="title">Minimum wage</span>
+							</a>
+						</h5>
+						<h5>
+							<a href="#percent-poverty" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
+								<span class="back">Back to menu</span>
+								<span class="title">Percent poverty</span>
+							</a>
+						</h5>
+						<h5>
+							<a href="#percent-uninsured" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
+								<span class="back">Back to menu</span>
+								<span class="title">Percent uninsured</span>
+							</a>
+						</h5>
+						<h5>
+							<a href="#percent-unionized" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
+								<span class="back">Back to menu</span>
+								<span class="title">Percent unionized</span>
+							</a>
+						</h5>
+						<div id="layer_options">
+
+							<ul class="collapse" id="gender-wage-gap">
+								<h4>Gender wage gap</h4>
+								<p>The “wage gap” is the additional money a woman would have to make for every dollar made by a man in order to have equal annual earnings. Nationally, the wage gap is 21&#162;.</p>
+								<li data="<= 21" data-type="cartocss" data-param="wage-gap-less-21" class="wage-gap">Wage gap is 21&#162; or less</li> 					
+								<li data="> 21" data-type="cartocss" data-param="wage-gap-more-21" class="wage-gap">Wage gap is more than 21&#162;</li>
+								<li class="back wage-gap">Back</li>
+							</ul>
+
+							<ul class="collapse" id="amt-min-wage">
+								<h4>Minimum wage</h4>
+								<p>The federal minimum wage is $7.25 per hour.</p>
+								<li data="<= 7.25" data-type="cartocss" data-param="min-wage-less-7-25" class="min-wage">Minimum wage is $7.25 or less</li>
+								<li data="> 7.25" data-type="cartocss" data-param="min-wage-more-7-25" class="min-wage">Minimum wage is more than $7.25</li>
+								<li class="back min-wage">Back</li>
+							</ul>
+
+							<ul class="collapse" id="percent-poverty">
+								<h4>Percent poverty</h4>
+								<p>"In 2013, the official poverty rate in the US was 14.5 percent."</p>
+								<li data="<= 14.5" data-type="cartocss" data-param="poverty-less-14-5" class="poverty-rate">14.5% or fewer residents in poverty</li>
+								<li data="> 14.5" data-type="cartocss" data-param="poverty-more-14-5" class="poverty-rate">more than 14.5% residents in poverty</li>
+								<li class="back poverty-rate">Back</li>
+
+							</ul>
+
+							<ul class="collapse" id="percent-uninsured">
+								<h4>Percent uninsured</h4>
+								<li data="<= 13" data-type="cartocss"  data-param="uninsured-less-13" class="uninsured-rate">13% or less uninsured</li>
+								<li data="> 13" data-type="cartocss" data-param="uninsured-more-13" class="uninsured-rate">more than 13% uninsured</li>
+								<li class="back uninsured-rate">Back</li>
+
+							</ul>
 
 
-  <div id="container">
-  	<div class="row" id="row-main">
-  		<div class="col-md-9" id="content">
-  			<div id="map"></div>
-  		</div>
+							<ul class="collapse" id="percent-unionized">
+								<h4>Percent unionized</h4>
+								<li data="<= 10" data-type="cartocss" data-param="unionized-less-10" class="unionized-rate">10% or less unionized</li>
+								<li data="> 10" data-type="cartocss" data-param="unionized-more-10" class="unionized-rate">more than 10% unionized</li>
+								<li class="back unionized-rate">Back</li>
 
-  		<div class="col-md-3" id="sidebar">
-  			<div class="row">
-  				<div class="col-md-12">
-  					<!-- <div class = "jumbotron"> -->
-  					<h2>What does it mean to live in a "right-to-work" state?</h2>
-  					<!-- </div> -->
-  					<div id="layer_selector">
+							</ul>
+						</div>
+					</div>
+				</div>	
+				<div class='cartodb-legend category'>	
+					<ul>
+						<li>
+							<div class="bullet" style="background: #5CA2D1"></div> STATES THAT ALLOW THE COLLECTION OF FAIR-SHARE FEES
+						</li>
+						<li>
+							<div class="bullet" style="background: #229A00"></div> RIGHT-TO-WORK STATES
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- /#sidebar-wrapper -->
 
-  						<div id="layer_list">
-
-  							<h5>
-  								<a href="#gender-wage-gap" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
-  									<span class="back">Back to menu</span>
-  									<span class="title">Gender wage gap</span>
-  								</a>
-  							</h5>
-
-  							<h5>
-  								<a href="#amt-min-wage" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
-  									<span class="back">Back to menu</span>
-  									<span class="title">Minimum wage</span>
-  								</a>
-  							</h5>
-
-  							<h5>
-  								<a href="#percent-poverty" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
-  									<span class="back">Back to menu</span>
-  									<span class="title">Percent poverty</span>
-  								</a>
-  							</h5>
-
-  							<h5>
-  								<a href="#percent-uninsured" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
-  									<span class="back">Back to menu</span>
-  									<span class="title">Percent uninsured</span>
-  								</a>
-  							</h5>
-
-  							<h5>
-  								<a href="#percent-unionized" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
-  									<span class="back">Back to menu</span>
-  									<span class="title">Percent unionized</span>
-  								</a>
-  							</h5>
-  						</div>
-  						<div id="layer_options">
-
-  							<ul class="collapse" id="gender-wage-gap">
-  								<h4>Gender wage gap</h4>
-  								<p>The “wage gap” is the additional money a woman would have to make for every dollar made by a man in order to have equal annual earnings. Nationally, the wage gap is 21&#162;.</p>
-  								<li data="<= 21" data-type="cartocss" data-param="wage-gap-less-21" class="wage-gap">Wage gap is 21&#162; or less</li> 					
-  								<li data="> 21" data-type="cartocss" data-param="wage-gap-more-21" class="wage-gap">Wage gap is more than 21&#162;</li>
-  								<li class="back wage-gap">Back</li>
-  							</ul>
-
-  							<ul class="collapse" id="amt-min-wage">
-  								<h4>Minimum wage</h4>
-  								<p>The federal minimum wage is $7.25 per hour.</p>
-  								<li data="<= 7.25" data-type="cartocss" data-param="min-wage-less-7-25" class="min-wage">Minimum wage is $7.25 or less</li>
-  								<li data="> 7.25" data-type="cartocss" data-param="min-wage-more-7-25" class="min-wage">Minimum wage is more than $7.25</li>
-  								<li class="back min-wage">Back</li>
-  							</ul>
-
-  							<ul class="collapse" id="percent-poverty">
-  								<h4>Percent poverty</h4>
-  								<p>"In 2013, the official poverty rate in the US was 14.5 percent."</p>
-  								<li data="<= 14.5" data-type="cartocss" data-param="poverty-less-14-5" class="poverty-rate">14.5% or fewer residents in poverty</li>
-  								<li data="> 14.5" data-type="cartocss" data-param="poverty-more-14-5" class="poverty-rate">more than 14.5% residents in poverty</li>
-  								<li class="back poverty-rate">Back</li>
-
-  							</ul>
-
-  							<ul class="collapse" id="percent-uninsured">
-  								<h4>Percent uninsured</h4>
-  								<li data="<= 13" data-type="cartocss"  data-param="uninsured-less-13" class="uninsured-rate">13% or less uninsured</li>
-  								<li data="> 13" data-type="cartocss" data-param="uninsured-more-13" class="uninsured-rate">more than 13% uninsured</li>
-  								<li class="back uninsured-rate">Back</li>
-
-  							</ul>
-
-
-  							<ul class="collapse" id="percent-unionized">
-  								<h4>Percent unionized</h4>
-  								<li data="<= 10" data-type="cartocss" data-param="unionized-less-10" class="unionized-rate">10% or less unionized</li>
-  								<li data="> 10" data-type="cartocss" data-param="unionized-more-10" class="unionized-rate">more than 10% unionized</li>
-  								<li class="back unionized-rate">Back</li>
-
-  							</ul>
-
-
-  						</div>
-  					</div>
-  				</div>
-  			</div>
-
-  			<div class="row">
-  				<div class='cartodb-legend category'>	
-  					<ul>
-  						<li>
-  							<div class="bullet" style="background: #5CA2D1"></div> STATES THAT ALLOW THE COLLECTION OF FAIR-SHARE FEES
-  						</li>
-  						<li>
-  							<div class="bullet" style="background: #229A00"></div> RIGHT-TO-WORK STATES
-  						</li>
-  					</ul>
-  				</div>
-  			</div>
-
-  		</div>
-  	</div>
-  </div><!-- /.container -->
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<div id="toggle-button">
+						<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Menu</a>
+						</div>
+						<div id="map"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /#page-content-wrapper -->
+	</div>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

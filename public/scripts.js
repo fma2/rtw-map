@@ -27,18 +27,19 @@ function createSelector(layer, selector) {
       layer.setCartoCSS(condition);
 
       $(href).toggle(function(){});
+
       // show layer with new cartoCSS
       layer.toggle();
 
     // handling back button
-    } else { 
-      $options.show();
-      $(this).toggle(function(){});
-      $(href).toggle(function(){});
-      layer.hide();
+  } else { 
+    $options.show();
+    $(this).toggle(function(){});
+    $(href).toggle(function(){});      
+    layer.hide();
 
-    }
-  });
+  }
+});
 }
 
 function main() {
@@ -135,12 +136,20 @@ function main() {
 }
 
 $(document).ready(function() {
-  // $('[data-toggle=offcanvas]').click(function() {
-  //   $('.row-offcanvas').toggleClass('active');
-  // });
+  $("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+  });
 
-  // $("#sidebar").toggleClass("collapsed");
-  // $("#content").toggleClass("col-md-12 col-md-9");
+  $("#sidebar").toggleClass("collapsed");
+  $("#content").toggleClass("col-md-12 col-md-9");
+
+  $(".toggle-sidebar").click(function () {
+    $("#sidebar").toggleClass("collapsed");
+    $("#content").toggleClass("col-md-12 col-md-9");
+
+    return false;
+  });
 
   $("#layer_list h5 a").click(function(){
     $("#layer_list h5").not($(this).parent()).toggle();
