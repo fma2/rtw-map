@@ -204,8 +204,7 @@ div.cartodb-legend {
   border: none;
   box-shadow: rgba(0,0,0,0) 0 0 4px 2px;
   width: 95%;
-  /*background: none*/
-  opacity: 0.8;
+  background-color: rgba(255,255,255,0.8);
 }
 
 div.cartodb-legend > ul{
