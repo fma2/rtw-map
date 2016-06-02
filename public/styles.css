@@ -36,9 +36,11 @@ body {
   right: 300px;
   width: 0;
   height: 100%;
-  margin-right: -290px;
+  margin-right: -300px;
   overflow-y: auto;
   background: white;
+  opacity: 0.9;
+  /*border-left: 1px solid #999;*/
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -71,7 +73,7 @@ body {
   top: 0;
   width: 300px;
   margin: 0;
-  padding: 0;
+  padding: 0px 20px;
   list-style: none;
   height: 100vh;
 }
@@ -137,7 +139,7 @@ a.list-group-item-success {
 
 @media(min-width:768px) {
   #wrapper {
-    padding-right: 250px;
+    padding-right: 300px;
   }
 
   #wrapper.toggled {

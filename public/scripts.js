@@ -43,27 +43,48 @@ function createSelector(layer, selector) {
 }
 
 function main() {
-  cartodb.createVis('map', 'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json', 
+  var mapbreakwidth = 720;
+  var highzoom = 6;
+  var lowzoom = 5;
+  var initzoom;
+  var vizjson = 'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json'
+
+  //Set initial mapheight, based on the calculated width of the map container
+  if ($("#map").width() > mapbreakwidth) {
+    initzoom = highzoom;
+    $("#map").height();
+  }
+  else {
+    initzoom = lowzoom;
+    $("#map").height();
+  };
+
+  cartodb.createVis('map', vizjson, 
   {
-    // shareable: true,
     tiles_loader: true,
-    zoom: 6
-    // center_lat: 0,
-    // center_lon: 0,
-    // title: true,
-    // description: true,
-    // search: true,
+    zoom: initzoom
   })
   .done(function(vis, layers) {
     // layer 0 is the base layer, layer 1 is cartodb layer
     // setInteraction is disabled by default
     layers[1].setInteraction(true);
-    // layers[1].on('featureOver', function(e, latlng, pos, data) {
-    //  cartodb.log.log(e, latlng, pos, data);
-    // });
     
     // you can get the native map to work with it
     var map = vis.getNativeMap();
+
+    //Use Leaflets resize event to set new map height and zoom level
+    map.on('resize', function(e) {
+      if (e.newSize.x < mapbreakwidth) {
+        map.setZoom(lowzoom);
+        $("#wage_gap_by_state_merge::labels").css("text-size", 8)
+        $("#state_squares_rtw_assets_with_wage_gap::labels").css("text-size", 8)
+      };
+
+      if (e.newSize.x > mapbreakwidth) {
+        map.setZoom(highzoom);
+        $("#state_squares_rtw_assets_with_wage_gap::labels").css("text-size", 10)
+      };
+    });
 
     // create wage gap sublayer
     cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json')
@@ -139,16 +160,6 @@ $(document).ready(function() {
   $("#menu-toggle").click(function(e) {
     e.preventDefault();
     $("#wrapper").toggleClass("toggled");
-  });
-
-  $("#sidebar").toggleClass("collapsed");
-  $("#content").toggleClass("col-md-12 col-md-9");
-
-  $(".toggle-sidebar").click(function () {
-    $("#sidebar").toggleClass("collapsed");
-    $("#content").toggleClass("col-md-12 col-md-9");
-
-    return false;
   });
 
   $("#layer_list h5 a").click(function(){
