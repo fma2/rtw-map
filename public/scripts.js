@@ -52,11 +52,11 @@ function main() {
   //Set initial mapheight, based on the calculated width of the map container
   if ($("#map").width() > mapbreakwidth) {
     initzoom = highzoom;
-    $("#map").height();
+    // $("#map").height();
   }
   else {
     initzoom = lowzoom;
-    $("#map").height();
+    // $("#map").height();
   };
 
   cartodb.createVis('map', vizjson, 
@@ -76,12 +76,16 @@ function main() {
     map.on('resize', function(e) {
       if (e.newSize.x < mapbreakwidth) {
         map.setZoom(lowzoom);
+        // $(".page-content-brand h2").show()
+        // $(".sidebar-brand h2").hide()
         $("#wage_gap_by_state_merge::labels").css("text-size", 8)
         $("#state_squares_rtw_assets_with_wage_gap::labels").css("text-size", 8)
       };
 
       if (e.newSize.x > mapbreakwidth) {
         map.setZoom(highzoom);
+        // $(".page-content-brand h2").hide()
+        // $(".sidebar-brand h2").show()
         $("#state_squares_rtw_assets_with_wage_gap::labels").css("text-size", 10)
       };
     });
@@ -171,6 +175,7 @@ $(document).ready(function() {
 
   $("span.back").hide();
   $("li.back").hide();
+
 
 });
 

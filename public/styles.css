@@ -7,7 +7,17 @@ body {
 	/*padding-top: 50px;*/
 }
 
-/* MAP */
+/*PAGE CONTENT*/
+.page-content-brand {
+  position:absolute;
+  z-index: 1000;
+  padding: 20px 30px; 
+  background-color: rgba(255, 250,250,0.9);
+  border-radius: 4px;
+}
+.page-content-brand > h2 a:hover {
+  text-decoration: none;
+}
 #map {
 	width: auto;
 	height: 100vh;
@@ -31,15 +41,17 @@ body {
 }
 
 #sidebar-wrapper {
-  z-index: 1000;
+  z-index: 2000;
   position: fixed;
   right: 300px;
   width: 0;
   height: 100%;
   margin-right: -300px;
   overflow-y: auto;
-  background: white;
+  /*background: white;*/
   opacity: 0.9;
+  background-color: rgba(255, 250,250,0.9);
+
   /*border-left: 1px solid #999;*/
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -165,7 +177,27 @@ a.list-group-item-success {
   }
 }
 
+@media(min-width: 720px) {
+  .page-content-brand {
+    visibility: hidden;
+  }
 
+  .sidebar-brand {
+    /*visibility: visible;*/
+    display: block;
+  }
+}
+
+@media(max-width: 719px) {
+  .page-content-brand {
+    visibility: visible;
+  }
+
+  .sidebar-brand {
+    /*visibility: hidden;*/
+    display: none;
+  }
+}
 
 /* LEGEND */
 div.cartodb-legend {
@@ -187,6 +219,7 @@ div.cartodb-legend.category > ul li {
   display: flex;
   align-items: center;
   margin: 0px 20px;
+  font-size: 10px;
 }
 
 div.cartodb-legend.category > ul li .bullet {
