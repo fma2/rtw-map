@@ -219,7 +219,7 @@ div.cartodb-legend.category > ul li {
   display: flex;
   align-items: center;
   margin: 0px 20px;
-  font-size: 10px;
+  font-size: 11px;
 }
 
 div.cartodb-legend.category > ul li .bullet {
