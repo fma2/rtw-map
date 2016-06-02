@@ -170,17 +170,27 @@ div.cartodb-legend {
   border: none;
   box-shadow: rgba(0,0,0,0) 0 0 4px 2px;
   width: 95%;
+  /*background: none*/
+  opacity: 0.8;
 }
 
-div.cartodb-legend.category ul li .bullet, div.cartodb-legend.color ul li .bullet, div.cartodb-legend.custom ul li .bullet {
+div.cartodb-legend > ul{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+div.cartodb-legend.category > ul li {
+  height: 25px;
+  display: flex;
+  align-items: center;
+  margin: 0px 20px;
+}
+
+div.cartodb-legend.category > ul li .bullet {
   border-radius: 0px;
   height: 20px;
   width:20px
-}
-div.cartodb-legend.category ul li, div.cartodb-legend.color ul li, div.cartodb-legend.custom ul li {
-  height: 25px;
-  /*display:flex;*/
-  /*align-items:center;*/
 }
 
 
