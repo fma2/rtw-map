@@ -51,8 +51,7 @@ function main() {
   var initzoom;
   var condition;
   var vizjson = 'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json'
-
-
+  
     //Set initial mapheight, based on the calculated width of the map container
     if ($("#map").width() > mapbreakwidth) {
       initzoom = highzoom;
@@ -93,18 +92,18 @@ function main() {
         map.setZoom(lowzoom);
       };
 
+      if (e.newSize.x <mobilebreakwidth){
+        condition = $('#lowzoom').text();
+        layers[1].getSubLayer(0).setCartoCSS(condition)
+        map.setZoom(mobilezoom);
+      }
+
       if (e.newSize.x > mapbreakwidth) {
         condition = $('#highzoom').text();
         layers[1].getSubLayer(0).setCartoCSS(condition)
         map.setZoom(highzoom);
 
       };
-
-      if (e.newSize.x <mobilebreakwidth){
-        condition = $('#lowzoom').text();
-        layers[1].getSubLayer(0).setCartoCSS(condition)
-        map.setZoom(mobilezoom);
-      }
     });
 
     // create wage gap sublayer
