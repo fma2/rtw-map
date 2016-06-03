@@ -258,3 +258,9 @@ div.cartodb-legend.category > ul li .bullet {
   font-size: 18px;
 }
 
+/*ZOOM*/
+div.cartodb-zoom{
+  position: fixed;
+  bottom: 100px;
+}
+
