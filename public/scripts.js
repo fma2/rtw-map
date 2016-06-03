@@ -44,50 +44,67 @@ function createSelector(layer, selector) {
 
 function main() {
   var mapbreakwidth = 720;
+  var mobilebreakwidth = 420
   var highzoom = 6;
-  var lowzoom = 5;
+  var lowzoom = 6;
+  var mobilezoom = 5;
   var initzoom;
+  var condition;
   var vizjson = 'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json'
 
-  //Set initial mapheight, based on the calculated width of the map container
-  if ($("#map").width() > mapbreakwidth) {
-    initzoom = highzoom;
-    // $("#map").height();
-  }
-  else {
-    initzoom = lowzoom;
-    // $("#map").height();
-  };
 
-  cartodb.createVis('map', vizjson, 
-  {
-    tiles_loader: true,
-    zoom: initzoom
-  })
-  .done(function(vis, layers) {
-    // layer 0 is the base layer, layer 1 is cartodb layer
-    // setInteraction is disabled by default
-    layers[1].setInteraction(true);
-    
+    //Set initial mapheight, based on the calculated width of the map container
+    if ($("#map").width() > mapbreakwidth) {
+      initzoom = highzoom;
+    }
+    else if ($("#map").width() < mobilebreakwidth)  {
+      initzoom = mobilezoom;
+    }
+    else {
+      initzoom = lowzoom;
+    };
+
+    cartodb.createVis('map', vizjson, 
+    {
+      tiles_loader: true,
+      zoom: initzoom
+    })
+    .done(function(vis, layers) {
+      layers[1].setInteraction(true);
+
+    //Set initial mapheight, based on the calculated width of the map container
+    if ($("#map").width() > mapbreakwidth) {
+      condition = $('#highzoom').text();
+      layers[1].getSubLayer(0).setCartoCSS(condition)
+    }
+    else {
+      condition = $('#lowzoom').text();
+      layers[1].getSubLayer(0).setCartoCSS(condition)
+    };
+
     // you can get the native map to work with it
     var map = vis.getNativeMap();
 
     //Use Leaflets resize event to set new map height and zoom level
     map.on('resize', function(e) {
       if (e.newSize.x < mapbreakwidth) {
+        condition = $('#lowzoom').text();
+        layers[1].getSubLayer(0).setCartoCSS(condition)
         map.setZoom(lowzoom);
-        // $(".page-content-brand h2").show()
-        // $(".sidebar-brand h2").hide()
-        $("#wage_gap_by_state_merge::labels").css("text-size", 8)
-        $("#state_squares_rtw_assets_with_wage_gap::labels").css("text-size", 8)
       };
 
       if (e.newSize.x > mapbreakwidth) {
+        condition = $('#highzoom').text();
+        layers[1].getSubLayer(0).setCartoCSS(condition)
         map.setZoom(highzoom);
-        // $(".page-content-brand h2").hide()
-        // $(".sidebar-brand h2").show()
-        $("#state_squares_rtw_assets_with_wage_gap::labels").css("text-size", 10)
+
       };
+
+      if (e.newSize.x <mobilebreakwidth){
+        condition = $('#lowzoom').text();
+        layers[1].getSubLayer(0).setCartoCSS(condition)
+        map.setZoom(mobilezoom);
+      }
     });
 
     // create wage gap sublayer
@@ -155,28 +172,28 @@ function main() {
       createSelector(subLayer, '#layer_selector li.unionized-rate');
     })
   })
-  .error(function(err) {
-    console.log(err);
+    .error(function(err) {
+      console.log(err);
+    });
+  }
+
+  $(document).ready(function() {
+    $("#sidebar-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+
+    $("#layer_list h5 a").click(function(){
+      $("#layer_list h5").not($(this).parent()).toggle();
+      $(this).toggleClass('list-group-item-info');
+      $(this).children('span.back').toggle();
+      $(this).children('span.title').toggle();
+    })
+
+    $("span.back").hide();
+    $("li.back").hide();
+
+
   });
-}
 
-$(document).ready(function() {
-  $("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
-  });
-
-  $("#layer_list h5 a").click(function(){
-    $("#layer_list h5").not($(this).parent()).toggle();
-    $(this).toggleClass('list-group-item-info');
-    $(this).children('span.back').toggle();
-    $(this).children('span.title').toggle();
-  })
-
-  $("span.back").hide();
-  $("li.back").hide();
-
-
-});
-
-window.onload = main;
+  window.onload = main;
