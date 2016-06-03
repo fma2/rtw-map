@@ -51,7 +51,7 @@ function main() {
   var initzoom;
   var condition;
   var vizjson = 'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json'
-  
+
     //Set initial mapheight, based on the calculated width of the map container
     if ($("#map").width() > mapbreakwidth) {
       initzoom = highzoom;
@@ -180,6 +180,14 @@ function main() {
     $("#sidebar-toggle").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
+    });
+    
+    $(".page-content-nav #layer_selector").toggle(function(){});
+
+    $("#page-content-indicators-toggle").click(function(e) {
+      e.preventDefault();
+      // $(".page-content-nav p").toggle(function(){});
+      $(".page-content-nav #layer_selector").toggle(function(){});
     });
 
     $("#layer_list h5 a").click(function(){

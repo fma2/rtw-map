@@ -81,6 +81,10 @@ body {
   margin-right: -250px;
 }
 
+#page-content-indicators-toggle .btn{
+  text-align: left;
+}
+
 /* Sidebar Styles */
 
 .sidebar-nav {
@@ -104,6 +108,29 @@ body {
   text-decoration: none;
 }
 
+#sidebar-toggle-wrapper {
+  right: 300px;
+  position: fixed;
+  z-index: 9999;
+  position: fixed;
+  right: 300px;
+  width: 0;
+  height: 100%;
+   -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+#sidebar-toggle {
+  border-radius: 0px;
+  text-transform: uppercase;
+  margin-top: 20px;
+  float:right;
+  padding-left: 30px;
+  padding-right: 20px;
+}
+
+/*MAP SELECTOR*/
 li.back {
   text-transform: uppercase;
   font-weight: 800;
@@ -142,28 +169,6 @@ a.list-group-item-success {
 }
 #layer_selector li.selected {
   background-color: #EEE;
-}
-
-#sidebar-toggle-wrapper {
-  right: 300px;
-  position: fixed;
-  z-index: 9999;
-  position: fixed;
-  right: 300px;
-  width: 0;
-  height: 100%;
-   -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
-#sidebar-toggle {
-  border-radius: 0px;
-  text-transform: uppercase;
-  margin-top: 20px;
-  float:right;
-  padding-left: 30px;
-  padding-right: 20px;
 }
 
 @media(min-width: 720px) {
