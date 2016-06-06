@@ -30,24 +30,29 @@ function createSelector(layer, selector) {
 
       // show layer with new cartoCSS
       layer.toggle();
-
+    } 
     // handling back button
-  } else { 
-    $options.show();
-    $(this).toggle(function(){});
-    $(href).toggle(function(){});      
-    layer.hide();
-
-  }
-});
+    else { 
+      $options.show();
+      $(this).toggle(function(){});
+      $(href).toggle(function(){});      
+      layer.hide();
+    }
+  });
 }
 
 function main() {
   var mapbreakwidth = 720;
-  var mobilebreakwidth = 420
+  var embedbreakwidth = 549;
+  var mobilebreakwidth = 420;
   var highzoom = 6;
-  var lowzoom = 6;
+  var lowzoom = 5.5;
   var mobilezoom = 5;
+  var defaultlat = 40.697299008636755;
+  var defaultlong = -96.87744140625;
+  var highLatLng = new L.LatLng(defaultlat, defaultlong);
+  var lowLatLng = new L.LatLng(44.762336674810996,  -95.3173828125);
+  var mobileLatLng = new L.LatLng(45.5679096098613, -96.2841796875);
   var initzoom;
   var condition;
   var vizjson = 'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json'
@@ -66,23 +71,40 @@ function main() {
     cartodb.createVis('map', vizjson, 
     {
       tiles_loader: true,
-      zoom: initzoom
+      zoom: initzoom,
+      center_lat: defaultlat,
+      center_long: defaultlong
     })
     .done(function(vis, layers) {
       layers[1].setInteraction(true);
 
+    // you can get the native map to work with it
+    var map = vis.getNativeMap();
+    // console.log(map.getCenter());
+
     //Set initial mapheight, based on the calculated width of the map container
-    if ($("#map").width() > mapbreakwidth) {
+    if ($("#map").width() >= mapbreakwidth) {
       condition = $('#highzoom').text();
       layers[1].getSubLayer(0).setCartoCSS(condition)
+    }
+    else if ($("#map").width() < embedbreakwidth && $("#map").width() > mobilebreakwidth) {
+      condition = $('#lowzoom').text();
+      layers[1].getSubLayer(0).setCartoCSS(condition)
+      map.panTo(lowLatLng);
+      layers[1].getSubLayer(0).on('featureClick', function(e, latlng, pos, data, subLayerIndex) {
+        console.log(map.getCenter());
+        console.log(latlng);
+      });
+    }
+    else if ($("#map").width() <= mobilebreakwidth) {
+      condition = $('#lowzoom').text();
+      layers[1].getSubLayer(0).setCartoCSS(condition)
+      map.panTo(mobileLatLng);
     }
     else {
       condition = $('#lowzoom').text();
       layers[1].getSubLayer(0).setCartoCSS(condition)
-    };
-
-    // you can get the native map to work with it
-    var map = vis.getNativeMap();
+    }
 
     //Use Leaflets resize event to set new map height and zoom level
     map.on('resize', function(e) {
@@ -90,21 +112,25 @@ function main() {
         condition = $('#lowzoom').text();
         layers[1].getSubLayer(0).setCartoCSS(condition)
         map.setZoom(lowzoom);
+        map.panTo(highLatLng);
       };
 
-      if (e.newSize.x <mobilebreakwidth){
+      if (e.newSize.x < mobilebreakwidth){
         condition = $('#lowzoom').text();
         layers[1].getSubLayer(0).setCartoCSS(condition)
         map.setZoom(mobilezoom);
+        map.panTo(mobileLatLng);
+        console.log(map.getCenter())
       }
 
       if (e.newSize.x > mapbreakwidth) {
         condition = $('#highzoom').text();
         layers[1].getSubLayer(0).setCartoCSS(condition)
         map.setZoom(highzoom);
-
+        map.panTo(highLatLng);
       };
     });
+
 
     // create wage gap sublayer
     cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json')
@@ -182,13 +208,13 @@ function main() {
       $("#wrapper").toggleClass("toggled");
     });
     
-    $(".page-content-nav #layer_selector").toggle(function(){});
+    // $(".page-content-nav #layer_selector").toggle(function(){});
 
-    $("#page-content-indicators-toggle").click(function(e) {
-      e.preventDefault();
-      // $(".page-content-nav p").toggle(function(){});
-      $(".page-content-nav #layer_selector").toggle(function(){});
-    });
+    // $("#page-content-indicators-toggle").click(function(e) {
+    //   e.preventDefault();
+    //   // $(".page-content-nav p").toggle(function(){});
+    //   $(".page-content-nav #layer_selector").toggle(function(){});
+    // });
 
     $("#layer_list h5 a").click(function(){
       $("#layer_list h5").not($(this).parent()).toggle();

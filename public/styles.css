@@ -3,9 +3,6 @@ html, body, #container {
 	width: 100%;
 	overflow: hidden;
 }
-body {
-	/*padding-top: 50px;*/
-}
 
 /*PAGE CONTENT*/
 .page-content-nav /*.page-content-brand*/ {
@@ -14,22 +11,26 @@ body {
   padding: 20px 30px; 
   background-color: rgba(255, 250,250,0.9);
   border-radius: 4px;
+  height: 320px;
+  width:100%;
+  overflow-y:hidden;
 }
-.page-content-nav .btn {
-  white-space: normal;
-}
-.page-content-brand > h2 a:hover {
+.page-content-nav a.ui-link:hover {
   text-decoration: none;
 }
+
+.page-content-nav #layer_selector #layer_list h5 {
+  padding:0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 #map {
 	width: auto;
 	height: 100vh;
   padding: 0;
   margin:0;
 }
-
-
-/*SIDEBAR*/
 
 #wrapper {
   padding-right: 0;
@@ -69,7 +70,6 @@ body {
 #page-content-wrapper {
   width: 100%;
   position: absolute;
-  /*padding: 15px;*/
 }
 
 #page-content-wrapper > .container-fluid .col-lg-12 {
@@ -81,11 +81,7 @@ body {
   margin-right: -250px;
 }
 
-#page-content-indicators-toggle .btn{
-  text-align: left;
-}
-
-/* Sidebar Styles */
+/* SIDEBAR STYLES */
 
 .sidebar-nav {
   position: absolute;
