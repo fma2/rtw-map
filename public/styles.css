@@ -20,7 +20,7 @@ html, body, #container {
 }
 .page-content-nav a:hover {
   text-decoration: none;
-  
+
 }
 .page-content-nav a.ui-link:hover {
   text-decoration: none;
@@ -253,19 +253,24 @@ div.cartodb-legend.category > ul li .bullet {
   width:20px
 }
 
-
 /* Info boxes styles */
-.cartodb-tooltip-content-wrapper .cartodb-tooltip-content h4 {
+.cartodb-popup-content h4, .cartodb-tooltip-content-wrapper .cartodb-tooltip-content h4 {
   font-size: 12px;
 }
 
-.cartodb-tooltip-content-wrapper .cartodb-tooltip-content p {
+div.cartodb-popup p, .cartodb-tooltip-content-wrapper .cartodb-tooltip-content p {
   font-size: 12px;
 }
 
-.cartodb-tooltip-content-wrapper .cartodb-tooltip-content p:nth-child(1) {
+div.cartodb-popup p:nth-child(1), .cartodb-tooltip-content-wrapper .cartodb-tooltip-content p:nth-child(1) {
   font-size: 18px;
 }
+div.cartodb-popup.v2 div.cartodb-popup-content-wrapper {
+  background: rgba(0,0,0,.5);
+}
+/*.cartodb-infowindow {
+  background: rgba(0,0,0,.75);
+}*/
 
 /* Zoom styles */
 div.cartodb-zoom{
