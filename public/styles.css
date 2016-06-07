@@ -378,10 +378,6 @@ div.cartodb-zoom{
     visibility: hidden;
   }
 
-  .sidebar-nav {
-    display: none;
-  }
-
 }
 
 @media(max-width: 420px) {

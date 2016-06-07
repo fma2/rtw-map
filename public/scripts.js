@@ -83,10 +83,15 @@ function main() {
   })
   .done(function(vis, layers) {
     layers[1].setInteraction(true);
+
     // you can get the native map to work with it
     var map = vis.getNativeMap();
+    
     var layer = layers[1].getSubLayer(0)
     layer.setInteraction(true);
+
+    map.scrollWheelZoom.disable();
+
     var infowindow;
 
     layer.on("featureClick", function(){
