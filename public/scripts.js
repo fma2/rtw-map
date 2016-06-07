@@ -88,9 +88,6 @@ function main() {
     var layer = layers[1].getSubLayer(0)
     var infowindow;
 
-    createIndicatorLayers(map,vizjson);
-    
-
     layer.on("featureClick", function(){
       $(".page-content-nav").fadeOut();
       if ($(".page-content-nav").css("visibility") == "visible") {
@@ -157,6 +154,11 @@ function main() {
         map.panTo(highLatLng);
       };
     });
+
+    setTimeout(function() {
+      createIndicatorLayers(map,vizjson);      
+    }, 2000)
+    
   })
   .error(function(err) {
     console.log(err);
