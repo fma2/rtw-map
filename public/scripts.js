@@ -24,12 +24,12 @@ function createSelector(layer, selector) {
 
     // set cartoCSS based on data from the layer
     if (type === "cartocss") {
+      $(href).toggle(function(){});
       $options.not($(this)).toggle(function(){
         $(this).css("color", "black")
       });
       condition = $('#'+param).text();
       layer.setCartoCSS(condition);
-      $(href).toggle(function(){});
 
       // show layer with new cartoCSS
       layer.toggle();
@@ -61,35 +61,41 @@ function main() {
   var condition;
   var vizjson = 'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json'
 
-    //Set initial mapheight, based on the calculated width of the map container
-    if ($("#map").width() > mapbreakwidth) {
-      initzoom = highzoom;
-    }
-    else if ($("#map").width() < mobilebreakwidth)  {
-      initzoom = mobilezoom;
-    }
-    else {
-      initzoom = lowzoom;
-    };
+  //Set initial mapheight, based on the calculated width of the map container
+  if ($("#map").width() > mapbreakwidth) {
+    initzoom = highzoom;
+  }
+  else if ($("#map").width() < mobilebreakwidth)  {
+    initzoom = mobilezoom;
+  }
+  else {
+    initzoom = lowzoom;
+  };
 
-    cartodb.createVis('map', vizjson, 
-    {
-      tiles_loader: true,
-      zoom: initzoom,
-      center_lat: defaultlat,
-      center_long: defaultlong
-    })
-    .done(function(vis, layers) {
-      layers[1].setInteraction(true);
+  cartodb.createVis('map', vizjson, 
+  {
+    tiles_loader: true,
+    loaderControl: true,
+    zoom: initzoom,
+    center_lat: defaultlat,
+    center_long: defaultlong,
+  })
+  .done(function(vis, layers) {
+    layers[1].setInteraction(true);
 
     // you can get the native map to work with it
     var map = vis.getNativeMap();
     var layer = layers[1].getSubLayer(0)
     var infowindow;
 
+    createIndicatorLayers(map,vizjson);
+    
+
     layer.on("featureClick", function(){
       $(".page-content-nav").fadeOut();
-      $("#show-menu").fadeIn();      
+      if ($(".page-content-nav").css("visibility") == "visible") {
+        $("#show-menu").fadeIn();      
+      }
       map.panTo(hideMenuLatLng)
     });
 
@@ -107,7 +113,7 @@ function main() {
       map.panTo(lowLatLng);
       return false;
     })
-    
+
     //Set initial mapheight, based on the calculated width of the map container
     if ($("#map").width() >= mapbreakwidth) {
       condition = $('#highzoom').text();
@@ -151,76 +157,78 @@ function main() {
         map.panTo(highLatLng);
       };
     });
-
-
-    // create wage gap sublayer
-    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json')
-    .addTo(map)
-    .done(function(layer){
-      var subLayer = layer.getSubLayer(0);
-
-      // hide points in this layer
-      subLayer.hide();
-
-      // create selector for this layer
-      createSelector(subLayer, '#layer_selector li.wage-gap');
-    })
-
-    // create minimum wage sublayer
-    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json')
-    .addTo(map)
-    .done(function(layer){
-      var subLayer = layer.getSubLayer(0);
-
-      // hide points in this layer
-      subLayer.hide();
-
-      // create selector for this layer
-      createSelector(subLayer, '#layer_selector li.min-wage');
-    }) 
-
-    // create poverty rate sublayer
-    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json')
-    .addTo(map)
-    .done(function(layer){
-      var subLayer = layer.getSubLayer(0);
-
-      // hide points in this layer
-      subLayer.hide();
-
-      // create selector for this layer
-      createSelector(subLayer, '#layer_selector li.poverty-rate');
-    })  
-    
-    // create percent uninsured sublayer
-    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json')
-    .addTo(map)
-    .done(function(layer){
-      var subLayer = layer.getSubLayer(0);
-
-      // hide points in this layer
-      subLayer.hide();
-
-      // create selector for this layer
-      createSelector(subLayer, '#layer_selector li.uninsured-rate');
-    })
-
-    // create percent unionized sublayer
-    cartodb.createLayer(map,'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json')
-    .addTo(map)
-    .done(function(layer){
-      var subLayer = layer.getSubLayer(0);
-
-      // hide points in this layer
-      subLayer.hide();
-
-      // create selector for this layer
-      createSelector(subLayer, '#layer_selector li.unionized-rate');
-    })
   })
-.error(function(err) {
-  console.log(err);
-});
+  .error(function(err) {
+    console.log(err);
+  });
+}
+
+function createIndicatorLayers(map, vizjson) {
+  
+  // create percent uninsured sublayer
+  cartodb.createLayer(map,vizjson)
+  .addTo(map)
+  .done(function(layer){
+    var subLayer = layer.getSubLayer(0);
+
+    // hide points in this layer
+    subLayer.hide();
+
+    // create selector for this layer
+    createSelector(subLayer, '#layer_selector li.uninsured-rate');
+  })
+
+  // create percent unionized sublayer
+  cartodb.createLayer(map,vizjson)
+  .addTo(map)
+  .done(function(layer){
+    var subLayer = layer.getSubLayer(0);
+
+    // hide points in this layer
+    subLayer.hide();
+
+    // create selector for this layer
+    createSelector(subLayer, '#layer_selector li.unionized-rate');
+  })
+
+  // create wage gap sublayer
+  cartodb.createLayer(map,vizjson)
+  .addTo(map)
+  .done(function(layer){
+    var subLayer = layer.getSubLayer(0);
+
+    // hide points in this layer
+    subLayer.hide();
+
+    // create selector for this layer
+    createSelector(subLayer, '#layer_selector li.wage-gap');
+  })
+
+  // create minimum wage sublayer
+  cartodb.createLayer(map,vizjson)
+  .addTo(map)
+  .done(function(layer){
+    var subLayer = layer.getSubLayer(0);
+
+    // hide points in this layer
+    subLayer.hide();
+
+    // create selector for this layer
+    createSelector(subLayer, '#layer_selector li.min-wage');
+  }) 
+
+  // create poverty rate sublayer
+  cartodb.createLayer(map,vizjson)
+  .addTo(map)
+  .done(function(layer){
+    var subLayer = layer.getSubLayer(0);
+
+    // hide points in this layer
+    subLayer.hide();
+
+    // create selector for this layer
+    createSelector(subLayer, '#layer_selector li.poverty-rate');
+  }) 
 }
 
 $(document).ready(function() {
