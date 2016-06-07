@@ -107,6 +107,7 @@ function main() {
       map.panTo(lowLatLng);
       return false;
     })
+    
     //Set initial mapheight, based on the calculated width of the map container
     if ($("#map").width() >= mapbreakwidth) {
       condition = $('#highzoom').text();

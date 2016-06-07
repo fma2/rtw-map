@@ -99,7 +99,7 @@
 		#state_squares_rtw_assets_with_wage_gap::labels {
 			text-name: [wage_gap] + " c" ;
 			text-face-name: 'Open Sans Regular';
-			/*text-size: 10;*/
+			text-size: 10;
 			text-label-position-tolerance: 10;
 			text-fill: #000;
 			text-halo-fill: #FFFFFF;
@@ -112,13 +112,6 @@
 
 		#state_squares_rtw_assets_with_wage_gap [ wage_gap > 21] {
 			polygon-fill: #FFF;
-			polygon-opacity: .9;
-			line-width:6;
-			line-color:#FFF;
-		}
-
-		#state_squares_rtw_assets_with_wage_gap [ wage_gap <= 21] {
-			/*polygon-fill: #FFF;*/
 			polygon-opacity: .9;
 			line-width:6;
 			line-color:#FFF;
@@ -310,7 +303,6 @@
 		#state_squares_rtw_assets_with_wage_gap [uninsured_rate_percent > 13] {
 			polygon-fill: #FFF;
 			polygon-opacity: .9;
-
 			line-width:6;
 			line-color:#FFF;
 		}
@@ -534,7 +526,7 @@
 									<h5>Select one of these five indicators of social well-being to see the difference a strong labor movement makes.</h5>
 									<div id="layer_selector">
 										<div id="layer_list">
-																					<div id="layer_options">
+											<div id="layer_options">
 												<ul class="collapse" id="gender-wage-gap-2">
 													<h4>Gender wage gap</h4>
 													<p>The “wage gap” is the additional money a woman would have to make for every dollar made by a man in order to have equal annual earnings. Nationally, the wage gap is 21&#162;.</p>
@@ -609,7 +601,7 @@
 										</div>
 									</div>
 									<div id="menu-options">
-										<a href="#pageone" class="btn btn-primary" data-transition="slide" data-direction="reverse"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Return home</a> <a href="#" class="btn btn-primary" id="hide-menu"><i class="fa fa-long-arrow-up" aria-hidden="true"></i> Hide</a>
+										<a href="#pageone" class="btn btn-primary" data-transition="slide" data-direction="reverse"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Return home</a> <a href="#" class="btn btn-primary" id="hide-menu"><i class="fa fa-long-arrow-up" aria-hidden="true"></i> Hide</a><!-- <a href="/" class="btn btn-primary" id="reset-map"><i class="fa fa-refresh" aria-hidden="true"></i> Reset</a> -->
 									</div>
 								</div>
 							</div>

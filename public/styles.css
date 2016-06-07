@@ -356,6 +356,7 @@ div.cartodb-zoom{
 
   .page-content-nav h1 {
     font-size: 24px;
+    margin-top: 0px;
   }
   .page-content-nav #layer_options h4 {
     font-size: 13px;
@@ -368,7 +369,6 @@ div.cartodb-zoom{
     padding: 7px;
   }
   .page-content-nav .btn {
-    /*line-height: 1px;*/
     padding: 6px;
   }
 
