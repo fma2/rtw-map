@@ -93,10 +93,6 @@ function main() {
       condition = $('#lowzoom').text();
       layers[1].getSubLayer(0).setCartoCSS(condition)
       map.panTo(lowLatLng);
-            layers[1].getSubLayer(0).on('featureClick', function(e, latlng, pos, data, subLayerIndex) {
-        console.log(map.getCenter());
-        console.log(latlng);
-});
     }
     else if ($("#map").width() <= mobilebreakwidth) {
       condition = $('#lowzoom').text();
@@ -122,7 +118,6 @@ function main() {
         layers[1].getSubLayer(0).setCartoCSS(condition)
         map.setZoom(mobilezoom);
         map.panTo(mobileLatLng);
-        console.log(map.getCenter())
       }
 
       if (e.newSize.x > mapbreakwidth) {
@@ -205,11 +200,12 @@ function main() {
   }
 
   $(document).ready(function() {
-    $("#sidebar-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
 
+    // initial hiding of back buttons in map selectors
+    $("span.back").hide();
+    $("li.back").hide();
+
+    // toggling for map selectors
     $("#layer_list h5 a").click(function(){
       $("#layer_list h5").not($(this).parent()).toggle();
       $(".btn.ui-link").toggle();
@@ -222,10 +218,11 @@ function main() {
       }
     })
 
-    $("span.back").hide();
-    $("li.back").hide();
-
-
+    // hide sidebar toggle button - not active currently
+    $("#sidebar-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
   });
 
   window.onload = main;

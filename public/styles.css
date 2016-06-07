@@ -4,8 +4,8 @@ html, body, #container {
 	overflow: hidden;
 }
 
-/*PAGE CONTENT*/
-.page-content-nav /*.page-content-brand*/ {
+/*Page content and wrapper styles*/
+.page-content-nav {
   position:absolute;
   z-index: 1000;
   padding: 20px 30px; 
@@ -105,7 +105,7 @@ html, body, #container {
 }
 
 
-/* SIDEBAR STYLES */
+/* Sidebar styles */
 
 #wrapper.toggled {
   padding-right: 300px;
@@ -114,7 +114,6 @@ html, body, #container {
 #wrapper.toggled #sidebar-wrapper {
   width: 300px;
 }
-
 
 #wrapper.toggled #page-content-wrapper {
   position: absolute;
@@ -180,7 +179,7 @@ html, body, #container {
   padding-right: 20px;
 }
 
-/*MAP SELECTOR*/
+/* Sidebar and some page content map selector*/
 li.back {
   text-transform: uppercase;
   font-weight: 800;
@@ -222,7 +221,7 @@ a.list-group-item-success {
 }
 
 
-/* LEGEND */
+/* Legend styles */
 div.cartodb-legend {
   border: none;
   box-shadow: rgba(0,0,0,0) 0 0 4px 2px;
@@ -251,7 +250,7 @@ div.cartodb-legend.category > ul li .bullet {
 }
 
 
-/*INFO BOXES*/
+/* Info boxes styles */
 .cartodb-tooltip-content-wrapper .cartodb-tooltip-content h4 {
   font-size: 12px;
 }
@@ -264,7 +263,7 @@ div.cartodb-legend.category > ul li .bullet {
   font-size: 18px;
 }
 
-/*ZOOM*/
+/* Zoom styles */
 div.cartodb-zoom{
   position: fixed;
   bottom: 100px;
@@ -272,6 +271,7 @@ div.cartodb-zoom{
 }
 
 
+/* Responsive styles */
 
 @media(min-width: 720px) {
   #wrapper {
@@ -301,8 +301,6 @@ div.cartodb-zoom{
   .page-content-nav {
     visibility: hidden;
   }
-
-
 
   .sidebar-nav {
     display: block;
