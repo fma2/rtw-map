@@ -156,9 +156,9 @@ function main() {
     });
 
     setTimeout(function() {
-      createIndicatorLayers(map,vizjson);      
+      createIndicatorLayers(map,vizjson);  
     }, 2000)
-    
+
   })
   .error(function(err) {
     console.log(err);

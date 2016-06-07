@@ -310,6 +310,13 @@ div.cartodb-zoom{
   box-shadow: none;
 }
 
+/*Loader styles*/
+.ui-loader-default {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 /* Responsive styles */
 
