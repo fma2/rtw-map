@@ -54,7 +54,7 @@ function main() {
   var defaultlat = 40.697299008636755;
   var defaultlong = -96.87744140625;
   var highLatLng = new L.LatLng(defaultlat, defaultlong);
-  var lowLatLng = new L.LatLng(44.762336674810996,  -95.3173828125);
+  var lowLatLng = new L.LatLng(43.54854811091286,  -95.69091796875);
   var mobileLatLng = new L.LatLng(45.5679096098613, -96.2841796875);
   var initzoom;
   var condition;
@@ -93,6 +93,10 @@ function main() {
       condition = $('#lowzoom').text();
       layers[1].getSubLayer(0).setCartoCSS(condition)
       map.panTo(lowLatLng);
+            layers[1].getSubLayer(0).on('featureClick', function(e, latlng, pos, data, subLayerIndex) {
+        console.log(map.getCenter());
+        console.log(latlng);
+});
     }
     else if ($("#map").width() <= mobilebreakwidth) {
       condition = $('#lowzoom').text();
