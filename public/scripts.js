@@ -2,7 +2,6 @@ function createSelector(layer, selector) {
   var sql = new cartodb.SQL({ user: 'fma2' });
   var $options = $(selector);
 
-  // console.log
   $options.click(function(e) {
     // get the area of the selected layer
     var $li = $(e.target);
@@ -11,7 +10,13 @@ function createSelector(layer, selector) {
     var type = $li.data('type');
     var param = $li.data('param');
     var id = $($options.parent()).attr("id");
-    var href = "a[href=#"+ id + "]"
+    var href;
+    if ($(this).parents(".page-content-nav").length){
+      href = "a[href=#"+ id + "-2]";
+    }
+    else {
+      href = "a[href=#"+ id + "]";
+    }
 
     // deselect all and select the clicked one
     $options.removeClass('selected');
@@ -19,13 +24,11 @@ function createSelector(layer, selector) {
 
     // set cartoCSS based on data from the layer
     if (type === "cartocss") {
-
       $options.not($(this)).toggle(function(){
         $(this).css("color", "black")
       });
       condition = $('#'+param).text();
       layer.setCartoCSS(condition);
-
       $(href).toggle(function(){});
 
       // show layer with new cartoCSS
@@ -80,7 +83,6 @@ function main() {
 
     // you can get the native map to work with it
     var map = vis.getNativeMap();
-    // console.log(map.getCenter());
 
     //Set initial mapheight, based on the calculated width of the map container
     if ($("#map").width() >= mapbreakwidth) {
@@ -91,10 +93,6 @@ function main() {
       condition = $('#lowzoom').text();
       layers[1].getSubLayer(0).setCartoCSS(condition)
       map.panTo(lowLatLng);
-      layers[1].getSubLayer(0).on('featureClick', function(e, latlng, pos, data, subLayerIndex) {
-        console.log(map.getCenter());
-        console.log(latlng);
-      });
     }
     else if ($("#map").width() <= mobilebreakwidth) {
       condition = $('#lowzoom').text();
@@ -207,20 +205,17 @@ function main() {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
-    
-    // $(".page-content-nav #layer_selector").toggle(function(){});
-
-    // $("#page-content-indicators-toggle").click(function(e) {
-    //   e.preventDefault();
-    //   // $(".page-content-nav p").toggle(function(){});
-    //   $(".page-content-nav #layer_selector").toggle(function(){});
-    // });
 
     $("#layer_list h5 a").click(function(){
       $("#layer_list h5").not($(this).parent()).toggle();
+      $(".btn.ui-link").toggle();
       $(this).toggleClass('list-group-item-info');
       $(this).children('span.back').toggle();
       $(this).children('span.title').toggle();
+
+      if ($(this).parents(".sidebar-nav").length == 0) {
+        $(this).parents(".page-content-nav").find("#layer_selector").prev("h5").toggle();
+      }
     })
 
     $("span.back").hide();
