@@ -114,21 +114,22 @@ function main() {
     //Set initial mapheight, based on the calculated width of the map container
     if ($("#map").width() >= mapbreakwidth) {
       condition = $('#highzoom').text();
-      layers[1].getSubLayer(0).setCartoCSS(condition)
+      layer.setCartoCSS(condition)
+      map.panTo(highLatLng);
     }
     else if ($("#map").width() < embedbreakwidth && $("#map").width() > mobilebreakwidth) {
       condition = $('#lowzoom').text();
-      layers[1].getSubLayer(0).setCartoCSS(condition)
+      layer.setCartoCSS(condition)
       map.panTo(lowLatLng);
     }
     else if ($("#map").width() <= mobilebreakwidth) {
       condition = $('#lowzoom').text();
-      layers[1].getSubLayer(0).setCartoCSS(condition)
+      layer.setCartoCSS(condition)
       map.panTo(mobileLatLng);
     }
     else {
       condition = $('#lowzoom').text();
-      layers[1].getSubLayer(0).setCartoCSS(condition)
+      layer.setCartoCSS(condition)
     }
 
     //Use Leaflets resize event to set new map height and zoom level
