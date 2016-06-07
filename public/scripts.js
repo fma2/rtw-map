@@ -56,6 +56,7 @@ function main() {
   var highLatLng = new L.LatLng(defaultlat, defaultlong);
   var lowLatLng = new L.LatLng(43.54854811091286,  -95.69091796875);
   var mobileLatLng = new L.LatLng(45.5679096098613, -96.2841796875);
+  var hideMenuLatLng = new L.LatLng(38.90813299596705, -94.921875);
   var initzoom;
   var condition;
   var vizjson = 'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json'
@@ -83,7 +84,29 @@ function main() {
 
     // you can get the native map to work with it
     var map = vis.getNativeMap();
+    var layer = layers[1].getSubLayer(0)
+    var infowindow;
 
+    layer.on("featureClick", function(){
+      $(".page-content-nav").fadeOut();
+      $("#show-menu").fadeIn();      
+      map.panTo(hideMenuLatLng)
+    });
+
+    $("#hide-menu").click(function(){
+      $(".page-content-nav").fadeOut();
+      $("#show-menu").fadeIn();
+      map.panTo(hideMenuLatLng);
+      return false;
+    })
+
+    $("#show-menu").click(function(){
+      $(".cartodb-infowindow").hide();
+      $(".page-content-nav").fadeIn();
+      $("#show-menu").hide();
+      map.panTo(lowLatLng);
+      return false;
+    })
     //Set initial mapheight, based on the calculated width of the map container
     if ($("#map").width() >= mapbreakwidth) {
       condition = $('#highzoom').text();
@@ -194,21 +217,23 @@ function main() {
       createSelector(subLayer, '#layer_selector li.unionized-rate');
     })
   })
-    .error(function(err) {
-      console.log(err);
-    });
-  }
+.error(function(err) {
+  console.log(err);
+});
+}
 
-  $(document).ready(function() {
+$(document).ready(function() {
 
     // initial hiding of back buttons in map selectors
     $("span.back").hide();
     $("li.back").hide();
+    $("#show-menu").hide();
+
 
     // toggling for map selectors
     $("#layer_list h5 a").click(function(){
       $("#layer_list h5").not($(this).parent()).toggle();
-      $(".btn.ui-link").toggle();
+      $("#menu-options a:first-child").toggle();
       $(this).toggleClass('list-group-item-info');
       $(this).children('span.back').toggle();
       $(this).children('span.title').toggle();
@@ -225,4 +250,4 @@ function main() {
     });
   });
 
-  window.onload = main;
+window.onload = main;

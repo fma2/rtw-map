@@ -108,6 +108,34 @@ html, body, #container {
   padding:0;
 }
 
+/*#options-menu {
+  text-align:center;
+  background: white;
+  margin:0;
+}*/
+
+#menu-options {
+  display: flex;
+  justify-content: center;
+}
+
+#menu-options a {
+  width:100%;
+}
+
+#show-menu.btn-primary {
+  background:white;
+  border-color: #38c;
+  width:100%;
+  color:#38c;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+#show-menu.btn-primary:hover {
+  background:#38c;
+  color: #fff;
+}
 
 /* Sidebar styles */
 
@@ -254,6 +282,10 @@ div.cartodb-legend.category > ul li .bullet {
 }
 
 /* Info boxes styles */
+
+div.cartodb-infowindow {
+  z-index: 4000;
+}
 .cartodb-popup-content h4, .cartodb-tooltip-content-wrapper .cartodb-tooltip-content h4 {
   font-size: 12px;
 }
@@ -268,9 +300,8 @@ div.cartodb-popup p:nth-child(1), .cartodb-tooltip-content-wrapper .cartodb-tool
 div.cartodb-popup.v2 div.cartodb-popup-content-wrapper {
   background: rgba(0,0,0,.5);
 }
-/*.cartodb-infowindow {
-  background: rgba(0,0,0,.75);
-}*/
+
+
 
 /* Zoom styles */
 div.cartodb-zoom{
@@ -319,7 +350,7 @@ div.cartodb-zoom{
 @media(max-width: 719px) {
   .page-content-nav {
     visibility: visible;
-    min-height:261px;
+    min-height:290px;
     overflow: auto;
   }
 
@@ -337,7 +368,7 @@ div.cartodb-zoom{
     padding: 7px;
   }
   .page-content-nav .btn {
-    line-height: 1px;
+    /*line-height: 1px;*/
     padding: 6px;
   }
 

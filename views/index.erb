@@ -116,6 +116,14 @@
 			line-width:6;
 			line-color:#FFF;
 		}
+
+		#state_squares_rtw_assets_with_wage_gap [ wage_gap <= 21] {
+			/*polygon-fill: #FFF;*/
+			polygon-opacity: .9;
+			line-width:6;
+			line-color:#FFF;
+		}
+
 		#state_squares_rtw_assets_with_wage_gap [ wage_gap = null] {
 			polygon-fill: #FFF;
 			polygon-opacity: 1;
@@ -427,37 +435,37 @@
 					<h5>Select one of these five indicators of social well-being to see the difference a strong labor movement makes.</h5>
 					<div id="layer_list">
 						<h5>
-						<a href="#gender-wage-gap" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
+							<a href="#gender-wage-gap" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
 								<span class="back">Back to menu</span>
 								<span class="title">Gender wage gap</span>
 							</a>
 						</h5>
 						<h5>
-						<a href="#amt-min-wage" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
+							<a href="#amt-min-wage" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
 								<span class="back">Back to menu</span>
 								<span class="title">Minimum wage</span>
 							</a>
 						</h5>
 						<h5>
-						<a href="#percent-poverty" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
+							<a href="#percent-poverty" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
 								<span class="back">Back to menu</span>
 								<span class="title">Percent in poverty</span>
 							</a>
 						</h5>
 						<h5>
-						<a href="#percent-uninsured" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
+							<a href="#percent-uninsured" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
 								<span class="back">Back to menu</span>
 								<span class="title">Percent uninsured</span>
 							</a>
 						</h5>
 						<h5>
-						<a href="#percent-unionized" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
+							<a href="#percent-unionized" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
 								<span class="back">Back to menu</span>
 								<span class="title">Percent unionized</span>
 							</a>
 						</h5>
 						<div id="layer_options">
-						<ul class="collapse" id="gender-wage-gap">
+							<ul class="collapse" id="gender-wage-gap">
 								<h4>Gender wage gap</h4>
 								<p>The “wage gap” is the additional money a woman would have to make for every dollar made by a man in order to have equal annual earnings. Nationally, the wage gap is 21&#162;.</p>
 								<li data="<= 21" data-type="cartocss" data-param="wage-gap-less-21" class="wage-gap">States where the gender wage gap is 21&#162; or less.</li> 					
@@ -508,16 +516,17 @@
 		<div id="page-content-wrapper">
 			<div class="container-fluid">
 				<div class="row">
-				<div class="col-lg-12">
+					<div class="col-lg-12">
+						<a href="" class="btn btn-primary" id="show-menu"><i class="fa fa-long-arrow-down" aria-hidden="true"></i> Show menu</a>
 						<div class="page-content-nav">
 							<div data-role="page" id="pageone">
 								<div data-role="main" class="ui-content">
 									<h1><a href="#">Would you want to live in a "right-to-work" state?</a></h1>
 									<div class="page-content-brand" id="title">
 										<p>Twenty-six states have passed “right-to-work” laws that bar labor unions from collecting agency or “fair-share” fees. It’s a no-brainer that right-to-work laws weaken unions. But what is life like for everyone who lives in a “right-to-work” state?</p>
-										<p>Check out five social well-being indicators--gender wage gap, minimum wage, percent in poverty, percent uninsured, and percent unionized--to see the difference a strong labor movement makes.</p>
+										<p>See for yourself how these states measure up on the gender wage gap, the minimum wage, percent living in poverty, percent without health insurance and percent unionized.</p>
 									</div>
-									<a href="#pagetwo" data-transition="slide" class="btn btn-primary">View indicators <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+									<a href="#pagetwo" data-transition="slide" class="btn btn-primary">View 5 key indicators of social well-being <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
 								</div>
 							</div> 
 							<div data-role="page" id="pagetwo">
@@ -525,37 +534,7 @@
 									<h5>Select one of these five indicators of social well-being to see the difference a strong labor movement makes.</h5>
 									<div id="layer_selector">
 										<div id="layer_list">
-											<h5>
-												<a href="#gender-wage-gap-2" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
-													<span class="back">Back to menu</span>
-													<span class="title">Gender wage gap</span>
-												</a>
-											</h5>
-											<h5>
-												<a href="#amt-min-wage-2" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
-													<span class="back">Back to menu</span>
-													<span class="title">Minimum wage</span>
-												</a>
-											</h5>
-											<h5>
-												<a href="#percent-poverty-2" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
-													<span class="back">Back to menu</span>
-													<span class="title">Percent in poverty</span>
-												</a>
-											</h5>
-											<h5>
-												<a href="#percent-uninsured-2" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
-													<span class="back">Back to menu</span>
-													<span class="title">Percent uninsured</span>
-												</a>
-											</h5>
-											<h5>
-												<a href="#percent-unionized-2" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
-													<span class="back">Back to menu</span>
-													<span class="title">Percent unionized</span>
-												</a>
-											</h5>
-											<div id="layer_options">
+																					<div id="layer_options">
 												<ul class="collapse" id="gender-wage-gap-2">
 													<h4>Gender wage gap</h4>
 													<p>The “wage gap” is the additional money a woman would have to make for every dollar made by a man in order to have equal annual earnings. Nationally, the wage gap is 21&#162;.</p>
@@ -597,11 +576,44 @@
 													<li class="back unionized-rate">Back</li>
 												</ul>
 											</div>
+											<h5>
+												<a href="#gender-wage-gap-2" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
+													<span class="back">Back to menu</span>
+													<span class="title">Gender wage gap</span>
+												</a>
+											</h5>
+											<h5>
+												<a href="#amt-min-wage-2" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
+													<span class="back">Back to menu</span>
+													<span class="title">Minimum wage</span>
+												</a>
+											</h5>
+											<h5>
+												<a href="#percent-poverty-2" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
+													<span class="back">Back to menu</span>
+													<span class="title">Percent in poverty</span>
+												</a>
+											</h5>
+											<h5>
+												<a href="#percent-uninsured-2" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
+													<span class="back">Back to menu</span>
+													<span class="title">Percent uninsured</span>
+												</a>
+											</h5>
+											<h5>
+												<a href="#percent-unionized-2" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">
+													<span class="back">Back to menu</span>
+													<span class="title">Percent unionized</span>
+												</a>
+											</h5>
 										</div>
 									</div>
-									<a href="#pageone" class="btn btn-primary" data-transition="slide" data-direction="reverse"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Return home</a>
+									<div id="menu-options">
+										<a href="#pageone" class="btn btn-primary" data-transition="slide" data-direction="reverse"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Return home</a> <a href="#" class="btn btn-primary" id="hide-menu"><i class="fa fa-long-arrow-up" aria-hidden="true"></i> Hide</a>
+									</div>
 								</div>
-							</div> 
+							</div>
+
 						</div>
 						<div id="map"></div>
 						<div class='cartodb-legend category'>	
