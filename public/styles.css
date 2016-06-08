@@ -107,12 +107,6 @@ html, body, #container {
   padding:0;
 }
 
-/*#options-menu {
-  text-align:center;
-  background: white;
-  margin:0;
-}*/
-
 #menu-options {
   display: flex;
   justify-content: center;
@@ -230,7 +224,9 @@ a.list-group-item-success {
   list-style-type: none;
 }
 #layer_selector li {
-  border-bottom: 1px solid #999;
+  background-color: #d9edf7;
+  border-radius: 4px;
+  border: 1px solid rgba(249,249,249,1);
   padding: 15px 30px;
   font-family: "Helvetica", Arial;
   font-size: 13px;
