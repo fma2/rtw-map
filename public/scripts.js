@@ -5,12 +5,12 @@ function createSelector(layer, selector) {
   $options.click(function(e) {
     // get the area of the selected layer
     var $li = $(e.target);
+    var selector = "." + $li[0].classList[0];
     var type = $li.data('type');
     var filter = $li.attr('data');
-    var type = $li.data('type');
     var param = $li.data('param');
     var id = $($options.parent()).attr("id");
-    var href;
+    var href;    
     if ($(this).parents(".page-content-nav").length){
       href = "a[href=#"+ id + "-2]";
     }
@@ -45,21 +45,26 @@ function createSelector(layer, selector) {
 }
 
 function main() {
-  var mapbreakwidth = 720;
-  var embedbreakwidth = 549;
-  var mobilebreakwidth = 420;
-  var highzoom = 6;
-  var lowzoom = 5.5;
-  var mobilezoom = 5;
-  var defaultlat = 40.697299008636755;
-  var defaultlong = -96.87744140625;
-  var highLatLng = new L.LatLng(defaultlat, defaultlong);
-  var lowLatLng = new L.LatLng(43.54854811091286,  -95.69091796875);
-  var mobileLatLng = new L.LatLng(45.5679096098613, -96.2841796875);
-  var hideMenuLatLng = new L.LatLng(38.90813299596705, -94.921875);
-  var initzoom;
-  var condition;
-  var vizjson = 'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json'
+  var vizjson = 'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json';
+
+  var mapbreakwidth = 720,
+      embedbreakwidth = 549,
+      mobilebreakwidth = 420;
+
+  var highzoom = 6,
+      lowzoom = 5.5,
+      mobilezoom = 5;
+
+  var defaultlat = 40.697299008636755,
+      defaultlong = -96.87744140625;
+
+  var highLatLng = new L.LatLng(defaultlat, defaultlong),
+      lowLatLng = new L.LatLng(43.54854811091286,  -95.69091796875),
+      mobileLatLng = new L.LatLng(45.5679096098613, -96.2841796875),
+      hideMenuLatLng = new L.LatLng(38.90813299596705, -94.921875);
+
+  var initzoom,
+      condition;
 
   //Set initial mapheight, based on the calculated width of the map container
   if ($("#map").width() > mapbreakwidth) {
@@ -76,30 +81,31 @@ function main() {
   {
     tiles_loader: true,
     loaderControl: true,
-    // infowindow: true,
+    infowindow: true,
     zoom: initzoom,
+    scrollwheel: false,
     center_lat: defaultlat,
     center_long: defaultlong,
   })
   .done(function(vis, layers) {
+    var infowindow,
+        layer;
+
     layers[1].setInteraction(true);
 
     // you can get the native map to work with it
     var map = vis.getNativeMap();
     
-    var layer = layers[1].getSubLayer(0)
+    // set sublayer interaction to true
+    layer = layers[1].getSubLayer(0)
     layer.setInteraction(true);
-
-    map.scrollWheelZoom.disable();
-
-    var infowindow;
-
     layer.on("featureClick", function(){
       $(".page-content-nav").fadeOut();
       if ($(".page-content-nav").css("visibility") == "visible") {
         $("#show-menu").fadeIn();      
       }
       map.panTo(hideMenuLatLng)
+      return false;
     });
 
     $("#hide-menu").click(function(){
@@ -123,19 +129,25 @@ function main() {
       layer.setCartoCSS(condition)
       map.panTo(highLatLng);
     }
+    else if ($("#map").width() == mobilebreakwidth) {
+      condition = $('#lowzoom').text();
+      layer.setCartoCSS(condition);
+      map.panTo(highLatLng);
+    }
+    else if ($("#map").width() < mobilebreakwidth) {
+      condition = $('#lowzoom').text();
+      layer.setCartoCSS(condition)
+      map.panTo(mobileLatLng);
+    }
     else if ($("#map").width() < embedbreakwidth && $("#map").width() > mobilebreakwidth) {
       condition = $('#lowzoom').text();
       layer.setCartoCSS(condition)
       map.panTo(lowLatLng);
     }
-    else if ($("#map").width() <= mobilebreakwidth) {
-      condition = $('#lowzoom').text();
-      layer.setCartoCSS(condition)
-      map.panTo(mobileLatLng);
-    }
     else {
-      condition = $('#lowzoom').text();
-      layer.setCartoCSS(condition)
+      condition = $('#highzoom').text();
+      layer.setCartoCSS(condition);
+      map.panTo(highLatLng);
     }
 
     //Use Leaflets resize event to set new map height and zoom level
@@ -173,7 +185,7 @@ function main() {
 }
 
 function createIndicatorLayers(map, vizjson) {
-  
+
   // create percent uninsured sublayer
   cartodb.createLayer(map,vizjson)
   .addTo(map)
@@ -246,7 +258,6 @@ $(document).ready(function() {
     $("span.back").hide();
     $("li.back").hide();
     $("#show-menu").hide();
-
 
     // toggling for map selectors
     $("#layer_list h5 a").click(function(){

@@ -4,7 +4,7 @@ html, body, #container {
 	overflow: hidden;
 }
 
-/*Page content and wrapper styles*/
+/*Page content nav and wrapper styles*/
 .page-content-nav {
   position:absolute;
   z-index: 1000;
@@ -67,7 +67,6 @@ html, body, #container {
   margin-top: 5px;
   margin-bottom: 5px;
   text-align: center;
-
 }
 
 .page-content-nav #layer_options h4 {
@@ -176,12 +175,6 @@ html, body, #container {
   padding: 0px 20px;
   list-style: none;
   height: 100vh;
-}
-
-.sidebar-nav > .sidebar-brand {
-}
-
-.sidebar-nav > .sidebar-brand a {
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
