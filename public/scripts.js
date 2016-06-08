@@ -191,6 +191,7 @@ function createIndicatorLayers(map, vizjson) {
   .addTo(map)
   .done(function(layer){
     var subLayer = layer.getSubLayer(0);
+    subLayer.setInteraction(true);
 
     // hide points in this layer
     subLayer.hide();
@@ -204,6 +205,7 @@ function createIndicatorLayers(map, vizjson) {
   .addTo(map)
   .done(function(layer){
     var subLayer = layer.getSubLayer(0);
+    subLayer.setInteraction(true);
 
     // hide points in this layer
     subLayer.hide();
@@ -217,6 +219,7 @@ function createIndicatorLayers(map, vizjson) {
   .addTo(map)
   .done(function(layer){
     var subLayer = layer.getSubLayer(0);
+    subLayer.setInteraction(true);
 
     // hide points in this layer
     subLayer.hide();
@@ -230,6 +233,7 @@ function createIndicatorLayers(map, vizjson) {
   .addTo(map)
   .done(function(layer){
     var subLayer = layer.getSubLayer(0);
+    subLayer.setInteraction(true);
 
     // hide points in this layer
     subLayer.hide();
@@ -243,6 +247,7 @@ function createIndicatorLayers(map, vizjson) {
   .addTo(map)
   .done(function(layer){
     var subLayer = layer.getSubLayer(0);
+    subLayer.setInteraction(true);
 
     // hide points in this layer
     subLayer.hide();
