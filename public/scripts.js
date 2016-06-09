@@ -277,7 +277,7 @@ $(document).ready(function() {
       }
       else {
         
-        $(this).parents("#layer_selector").prev().children("h5").toggle();
+      $(this).parents("#layer_selector").prev().children("h5").toggle();
       }
     })
 

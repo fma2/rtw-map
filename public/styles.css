@@ -399,7 +399,7 @@ div.cartodb-zoom{
     font-size: 21px;
   }
   .page-content-nav p, .page-content-nav .btn, .page-content-nav h5, .page-content-nav #layer_selector h5, .page-content-nav #layer_selector li, .page-content-nav #layer_options p {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   div.cartodb-legend.category > ul li {
@@ -411,14 +411,6 @@ div.cartodb-zoom{
   }
 
   div.cartodb-legend {
-    padding:0;
-    bottom: 50px;
-  }
-
-}
-
-@media(max-width: 420px) {
-  .page-content-nav #pageone {
-    /*min-height: 24px;*/
+    /*bottom: 50px;*/
   }
 }
