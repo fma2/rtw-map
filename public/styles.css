@@ -8,9 +8,9 @@ html, body, #container {
 .page-content-nav {
   position:absolute;
   z-index: 1000;
-  padding: 20px 30px; 
+  padding: 15px; 
   border-radius: 4px;
-  min-height: 340px;
+  min-height: 200px;
   width:100%;
   overflow: auto;
 }
@@ -130,6 +130,10 @@ html, body, #container {
   color: #fff;
 }
 
+.ui-mobile [data-role=page], .ui-mobile [data-role=dialog], .ui-page {
+  position:relative;
+}
+
 /* Sidebar styles */
 
 #wrapper.toggled {
@@ -198,14 +202,21 @@ html, body, #container {
   padding-right: 20px;
 }
 
-.sidebar-footer .sources {
+.sidebar-footer {
   padding:0px 20px 10px 20px;
   position:absolute;
   bottom:0  
 }
 
-.sources {
-  font-size:9px;
+.page-content-nav-footer {
+  position: relative;
+  bottom:0;
+  margin:0;
+  padding: 0 0.7em;
+}
+
+.sources p {
+  font-size:9px !important;
 }
 
 /* Sidebar and some page content map selector*/
@@ -309,6 +320,10 @@ div.cartodb-zoom{
   box-shadow: none;
 }
 
+.cartodb-logo {
+  display:none !important;
+}
+
 /* Responsive styles */
 
 @media(min-width: 720px) {
@@ -348,7 +363,7 @@ div.cartodb-zoom{
 @media(max-width: 719px) {
   .page-content-nav {
     visibility: visible;
-    min-height:290px;
+    min-height:200px;
     overflow: auto;
   }
 
@@ -379,8 +394,30 @@ div.cartodb-zoom{
 
 }
 
+@media only screen and (max-device-width: 480px) {
+  .page-content-nav h1 {
+    font-size: 21px;
+  }
+  .page-content-nav p, .page-content-nav .btn, .page-content-nav h5, .page-content-nav #layer_selector h5, .page-content-nav #layer_selector li, .page-content-nav #layer_options p {
+    font-size: 11px;
+  }
+
+  div.cartodb-legend.category > ul li {
+    font-size: 9px;
+  }
+
+  #layer_selector li {
+    padding: 10px;
+  }
+
+  div.cartodb-legend {
+    padding:0;
+  }
+
+}
+
 @media(max-width: 420px) {
   .page-content-nav #pageone {
-    min-height: 24px;
+    /*min-height: 24px;*/
   }
 }
