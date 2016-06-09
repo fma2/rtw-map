@@ -272,12 +272,12 @@ $(document).ready(function() {
       $(this).children('span.back').toggle();
       $(this).children('span.title').toggle();
 
-      // $(this).parents("#layer_selector")//.prev("h5").toggle();
-      // $(this).parents("#layer_selector").prev().find("h5").toggle()
-      $(this).parents("#layer_selector").prev().children("h5").toggle();
-
       if ($(this).parents(".sidebar-nav").length == 0) {
         $(this).parents(".page-content-nav").find("#layer_selector").prev("h5").toggle();
+      }
+      else {
+        
+        $(this).parents("#layer_selector").prev().children("h5").toggle();
       }
     })
 
