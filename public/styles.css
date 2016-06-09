@@ -411,6 +411,7 @@ div.cartodb-zoom{
   }
 
   div.cartodb-legend {
+    right:0px;
     /*bottom: 50px;*/
   }
 }
