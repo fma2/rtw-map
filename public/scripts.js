@@ -48,23 +48,23 @@ function main() {
   var vizjson = 'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json';
 
   var mapbreakwidth = 720,
-      embedbreakwidth = 549,
-      mobilebreakwidth = 420;
+  embedbreakwidth = 549,
+  mobilebreakwidth = 420;
 
   var highzoom = 6,
-      lowzoom = 5.5,
-      mobilezoom = 5;
+  lowzoom = 5.5,
+  mobilezoom = 5;
 
   var defaultlat = 40.697299008636755,
-      defaultlong = -96.87744140625;
+  defaultlong = -96.87744140625;
 
   var highLatLng = new L.LatLng(defaultlat, defaultlong),
-      lowLatLng = new L.LatLng(43.54854811091286,  -95.69091796875),
-      mobileLatLng = new L.LatLng(45.5679096098613, -96.2841796875),
-      hideMenuLatLng = new L.LatLng(38.90813299596705, -94.921875);
+  lowLatLng = new L.LatLng(43.54854811091286,  -95.69091796875),
+  mobileLatLng = new L.LatLng(45.5679096098613, -96.2841796875),
+  hideMenuLatLng = new L.LatLng(38.90813299596705, -94.921875);
 
   var initzoom,
-      condition;
+  condition;
 
   //Set initial mapheight, based on the calculated width of the map container
   if ($("#map").width() > mapbreakwidth) {
@@ -89,7 +89,7 @@ function main() {
   })
   .done(function(vis, layers) {
     var infowindow,
-        layer;
+    layer;
 
     layers[1].setInteraction(true);
 
@@ -271,6 +271,10 @@ $(document).ready(function() {
       $(this).toggleClass('list-group-item-info');
       $(this).children('span.back').toggle();
       $(this).children('span.title').toggle();
+
+      // $(this).parents("#layer_selector")//.prev("h5").toggle();
+      // $(this).parents("#layer_selector").prev().find("h5").toggle()
+      $(this).parents("#layer_selector").prev().children("h5").toggle();
 
       if ($(this).parents(".sidebar-nav").length == 0) {
         $(this).parents(".page-content-nav").find("#layer_selector").prev("h5").toggle();
