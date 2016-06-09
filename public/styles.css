@@ -4,13 +4,13 @@ html, body, #container {
 	overflow: hidden;
 }
 
-/*Page content and wrapper styles*/
+/*Page content nav and wrapper styles*/
 .page-content-nav {
   position:absolute;
   z-index: 1000;
-  padding: 20px 30px; 
+  padding: 15px; 
   border-radius: 4px;
-  min-height: 340px;
+  min-height: 200px;
   width:100%;
   overflow: auto;
 }
@@ -67,7 +67,6 @@ html, body, #container {
   margin-top: 5px;
   margin-bottom: 5px;
   text-align: center;
-
 }
 
 .page-content-nav #layer_options h4 {
@@ -108,12 +107,6 @@ html, body, #container {
   padding:0;
 }
 
-/*#options-menu {
-  text-align:center;
-  background: white;
-  margin:0;
-}*/
-
 #menu-options {
   display: flex;
   justify-content: center;
@@ -135,6 +128,10 @@ html, body, #container {
 #show-menu.btn-primary:hover {
   background:#38c;
   color: #fff;
+}
+
+.ui-mobile [data-role=page], .ui-mobile [data-role=dialog], .ui-page {
+  position:relative;
 }
 
 /* Sidebar styles */
@@ -178,12 +175,6 @@ html, body, #container {
   height: 100vh;
 }
 
-.sidebar-nav > .sidebar-brand {
-}
-
-.sidebar-nav > .sidebar-brand a {
-}
-
 .sidebar-nav > .sidebar-brand a:hover {
   background: none;
   text-decoration: none;
@@ -209,6 +200,23 @@ html, body, #container {
   float:right;
   padding-left: 30px;
   padding-right: 20px;
+}
+
+.sidebar-footer {
+  padding:0px 20px 10px 20px;
+  position:absolute;
+  bottom:0  
+}
+
+.page-content-nav-footer {
+  position: relative;
+  bottom:0;
+  margin:0;
+  padding: 5px 0.7em 0px 0.7em;
+}
+
+.sources p {
+  font-size:9px !important;
 }
 
 /* Sidebar and some page content map selector*/
@@ -237,11 +245,13 @@ a.list-group-item-success {
   list-style-type: none;
 }
 #layer_selector li {
-  border-bottom: 1px solid #999;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #ccc;
   padding: 15px 30px;
   font-family: "Helvetica", Arial;
   font-size: 13px;
-  color: #444;
+  color: #373a3c;
   cursor: auto;
 }
 #layer_selector li:hover {
@@ -310,6 +320,10 @@ div.cartodb-zoom{
   box-shadow: none;
 }
 
+.cartodb-logo {
+  display:none !important;
+}
+
 /* Responsive styles */
 
 @media(min-width: 720px) {
@@ -349,7 +363,7 @@ div.cartodb-zoom{
 @media(max-width: 719px) {
   .page-content-nav {
     visibility: visible;
-    min-height:290px;
+    min-height:200px;
     overflow: auto;
   }
 
@@ -378,14 +392,28 @@ div.cartodb-zoom{
     visibility: hidden;
   }
 
-  .sidebar-nav {
-    display: none;
-  }
-
 }
 
-@media(max-width: 420px) {
-  .page-content-nav #pageone {
-    min-height: 24px;
+@media only screen and (max-device-width: 480px) {
+  .page-content-nav h1 {
+    font-size: 21px;
+  }
+  .page-content-nav p, .page-content-nav .btn, .page-content-nav h5, .page-content-nav #layer_selector h5, .page-content-nav #layer_selector li, .page-content-nav #layer_options p {
+    font-size: 12px;
+  }
+
+  div.cartodb-legend.category > ul li {
+    font-size: 9px;
+  }
+
+  #layer_selector li {
+    padding: 10px;
+  }
+
+  div.cartodb-legend {
+    width:100%;
+    margin-left:auto;
+    margin-right:auto;
+    right:auto;
   }
 }
