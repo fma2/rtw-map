@@ -165,14 +165,18 @@ html, body, #container {
   transition: all 0.5s ease;
 }
 
+.sidebar-content {
+  height:93%;
+  display:table;
+}
 .sidebar-nav {
-  position: absolute;
   top: 0;
   width: 300px;
   margin: 0;
   padding: 0px 20px;
   list-style: none;
-  height: 100vh;
+  display: table-cell;
+  vertical-align: middle
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
@@ -204,7 +208,6 @@ html, body, #container {
 
 .sidebar-footer {
   padding:0px 20px 10px 20px;
-  position:absolute;
   bottom:0  
 }
 
@@ -353,10 +356,6 @@ div.cartodb-zoom{
   }
   .page-content-nav {
     visibility: hidden;
-  }
-
-  .sidebar-nav {
-    display: block;
   }
 }
 
