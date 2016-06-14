@@ -315,14 +315,7 @@ div.cartodb-popup.v2 div.cartodb-popup-content-wrapper {
 }
 
 
-
-/* Zoom styles */
-div.cartodb-zoom{
-  position: fixed;
-  bottom: 100px;
-  box-shadow: none;
-}
-
+/*Cartodb logo styles*/
 .cartodb-logo {
   display:none !important;
 }
