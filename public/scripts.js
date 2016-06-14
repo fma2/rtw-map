@@ -48,8 +48,8 @@ function main() {
   var vizjson = 'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json';
 
   var mapbreakwidth = 720,
-  embedbreakwidth = 549,
-  mobilebreakwidth = 420;
+  embedbreakwidth = 592,
+  mobilebreakwidth = 480;
 
   var highzoom = 6,
   lowzoom = 5.5,
@@ -132,17 +132,21 @@ function main() {
     else if ($("#map").width() == mobilebreakwidth) {
       condition = $('#lowzoom').text();
       layer.setCartoCSS(condition);
-      map.panTo(highLatLng);
+      map.panTo(lowLatLng);
     }
     else if ($("#map").width() < mobilebreakwidth) {
       condition = $('#lowzoom').text();
       layer.setCartoCSS(condition)
       map.panTo(mobileLatLng);
     }
-    else if ($("#map").width() < embedbreakwidth && $("#map").width() > mobilebreakwidth) {
+    else if ($("#map").width() <= embedbreakwidth && $("#map").width() > mobilebreakwidth) {
       condition = $('#lowzoom').text();
       layer.setCartoCSS(condition)
-      map.panTo(lowLatLng);
+      map.panTo(highLatLng);
+      console.log(map.getCenter());
+      layer.on("featureClick",function(e, latlng, pos, data, layer){
+        console.log(map.getCenter());
+      })
     }
     else {
       condition = $('#highzoom').text();
@@ -276,8 +280,8 @@ $(document).ready(function() {
         $(this).parents(".page-content-nav").find("#layer_selector").prev("h5").toggle();
       }
       else {
-        
-      $(this).parents("#layer_selector").prev().children("h5").toggle();
+
+        $(this).parents("#layer_selector").prev().children("h5").toggle();
       }
     })
 
