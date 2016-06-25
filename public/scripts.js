@@ -53,14 +53,11 @@ function main() {
   //sidebar embed breakwidth/s
   var sidebarembedbreakwidth = 640;
 
-  // topbar breakwidths/s
-  var topbarbreakwidth = 720;
-
   var highzoom = 6,
   lowzoom = 5;
 
-  var highLat = 40.697299008636755,
-  highLong = -96.87744140625;
+  var highLat = 40.70562793820592,
+  highLong =  -96.1083984375;
   highLatLng = new L.LatLng(highLat,highLong);
 
   var lowLat = 44.26093725039923,
