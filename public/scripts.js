@@ -152,10 +152,6 @@ function main() {
       }
     }
 
-    layer.on("featureOver",function(e, latlng, pos, data, layer){
-      console.log(map.getCenter());
-    })
-
     //Use Leaflets resize event to set new map height and zoom level
     map.on('resize', function(e) {
 
