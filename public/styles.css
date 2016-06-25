@@ -137,11 +137,11 @@ html, body, #container {
 /* Sidebar styles */
 
 #wrapper.toggled {
-  padding-right: 270px;
+  padding-right: 260px;
 }
 
 #wrapper.toggled #sidebar-wrapper {
-  width: 270px;
+  width: 260px;
 }
 
 #wrapper.toggled #page-content-wrapper {
@@ -152,10 +152,10 @@ html, body, #container {
 #sidebar-wrapper {
   z-index: 2000;
   position: fixed;
-  right: 270px;
+  right: 260px;
   width: 0;
   height: 100%;
-  margin-right: -270px;
+  margin-right: -260px;
   overflow-y: auto;
   opacity: 0.9;
   background-color: rgba(255, 250,250,0.9);
@@ -171,7 +171,7 @@ html, body, #container {
 }
 .sidebar-nav {
   top: 0;
-  width: 270px;
+  width: 260px;
   margin: 0;
   padding: 0px 20px;
   list-style: none;
@@ -185,11 +185,11 @@ html, body, #container {
 }
 
 #sidebar-toggle-wrapper {
-  right: 270px;
+  right: 260px;
   position: fixed;
   z-index: 9999;
   position: fixed;
-  right: 270px;
+  right: 260px;
   width: 0;
   height: 100%;
   -webkit-transition: all 0.5s ease;
@@ -325,7 +325,7 @@ div.cartodb-popup.v2 div.cartodb-popup-content-wrapper {
 
 @media(min-width: 720px) {
   #wrapper {
-    padding-right: 270px;
+    padding-right: 260px;
   }
 
   #wrapper.toggled {
@@ -333,7 +333,7 @@ div.cartodb-popup.v2 div.cartodb-popup-content-wrapper {
   }
 
   #sidebar-wrapper {
-    width: 270px;
+    width: 260px;
   }
 
   #wrapper.toggled #sidebar-wrapper {
