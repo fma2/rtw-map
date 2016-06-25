@@ -106,8 +106,6 @@ function main() {
 
     // you can get the native map to work with it
     var map = vis.getNativeMap();
-      console.log(map.getCenter());
-
 
     // set sublayer interaction to true
     layer = layers[1].getSubLayer(0)
