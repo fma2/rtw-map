@@ -60,8 +60,8 @@ function main() {
   highLong =   -96.064453125,
   highLatLng = new L.LatLng(highLat,highLong);
 
-  var lowLat = 44.26093725039923,
-  lowLong =  -94.94384765625,
+  var lowLat = 45.321254361171476,
+  lowLong =  -95.3173828125,
   lowLatLng = new L.LatLng(lowLat, lowLong);
 
   var hiddenMenuLat = 38.90813299596705,
