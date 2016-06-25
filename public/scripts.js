@@ -47,35 +47,46 @@ function createSelector(layer, selector) {
 function main() {
   var vizjson = 'https://fma2.cartodb.com/api/v2/viz/d1fa6bb6-242d-11e6-a38d-0e5db1731f59/viz.json';
 
-  var mapbreakwidth = 720,
-  embedbreakwidth = 549,
-  mobilebreakwidth = 420;
+  var menubreakwidth = 720; // when the sidebar turns into a topbar
+  var isTopbarVisible = $(window).width() < menubreakwidth; //check if topbar is visible
+
+  //sidebar embed breakwidth/s
+  var sidebarembedbreakwidth = 640;
 
   var highzoom = 6,
-  lowzoom = 5.5,
-  mobilezoom = 5;
+  lowzoom = 5;
 
-  var defaultlat = 40.697299008636755,
-  defaultlong = -96.87744140625;
+  var highLat =  40.287906612507406,
+  highLong =   -96.064453125,
+  highLatLng = new L.LatLng(highLat,highLong);
 
-  var highLatLng = new L.LatLng(defaultlat, defaultlong),
-  lowLatLng = new L.LatLng(43.54854811091286,  -95.69091796875),
-  mobileLatLng = new L.LatLng(45.5679096098613, -96.2841796875),
-  hideMenuLatLng = new L.LatLng(38.90813299596705, -94.921875);
+  var lowLat = 45.321254361171476,
+  lowLong =  -95.3173828125,
+  lowLatLng = new L.LatLng(lowLat, lowLong);
 
-  var initzoom,
+  var hiddenMenuLat = 38.90813299596705,
+  hiddenMenuLong= -94.921875,
+  hiddenMenuLatLong = new L.LatLng(hiddenMenuLat, hiddenMenuLong);
+
+  var initLat,
+  initLong,
+  initzoom,
   condition;
 
-  //Set initial mapheight, based on the calculated width of the map container
-  if ($("#map").width() > mapbreakwidth) {
-    initzoom = highzoom;
-  }
-  else if ($("#map").width() < mobilebreakwidth)  {
-    initzoom = mobilezoom;
-  }
-  else {
+  //set initial zoom and lat and long
+  if (isTopbarVisible) {
     initzoom = lowzoom;
-  };
+    initLat = lowLat;
+    initLong = lowLong;
+  } else {
+    initLat = highLat, initLong = highLong;
+    if ($("#map").width() > sidebarembedbreakwidth) {
+      initzoom = highzoom;     
+    }
+    else {
+      initzoom = lowzoom;
+    }
+  }
 
   cartodb.createVis('map', vizjson, 
   {
@@ -84,8 +95,8 @@ function main() {
     infowindow: true,
     zoom: initzoom,
     scrollwheel: false,
-    center_lat: defaultlat,
-    center_long: defaultlong,
+    center_lat: initLat,
+    center_lon: initLong,
   })
   .done(function(vis, layers) {
     var infowindow,
@@ -95,23 +106,26 @@ function main() {
 
     // you can get the native map to work with it
     var map = vis.getNativeMap();
-    
+      console.log(map.getCenter());
+
+
     // set sublayer interaction to true
     layer = layers[1].getSubLayer(0)
     layer.setInteraction(true);
+    
     layer.on("featureClick", function(){
       $(".page-content-nav").fadeOut();
       if ($(".page-content-nav").css("visibility") == "visible") {
         $("#show-menu").fadeIn();      
       }
-      map.panTo(hideMenuLatLng)
+      map.panTo(hiddenMenuLatLong)
       return false;
     });
 
     $("#hide-menu").click(function(){
       $(".page-content-nav").fadeOut();
       $("#show-menu").fadeIn();
-      map.panTo(hideMenuLatLng);
+      map.panTo(hiddenMenuLatLong);
       return false;
     })
 
@@ -123,55 +137,47 @@ function main() {
       return false;
     })
 
-    //Set initial mapheight, based on the calculated width of the map container
-    if ($("#map").width() >= mapbreakwidth) {
-      condition = $('#highzoom').text();
-      layer.setCartoCSS(condition)
-      map.panTo(highLatLng);
-    }
-    else if ($("#map").width() == mobilebreakwidth) {
-      condition = $('#lowzoom').text();
-      layer.setCartoCSS(condition);
-      map.panTo(highLatLng);
-    }
-    else if ($("#map").width() < mobilebreakwidth) {
+    //Set initial map css, based on the calculated width of the map container
+    if (isTopbarVisible) {
       condition = $('#lowzoom').text();
       layer.setCartoCSS(condition)
-      map.panTo(mobileLatLng);
+    } else {
+      if ($("#map").width() <= sidebarembedbreakwidth) {
+        condition = $('#lowzoom').text();
+        layer.setCartoCSS(condition)
+      }
+      else {
+        condition = $('#highzoom').text();
+        layer.setCartoCSS(condition)
+      }
     }
-    else if ($("#map").width() < embedbreakwidth && $("#map").width() > mobilebreakwidth) {
-      condition = $('#lowzoom').text();
-      layer.setCartoCSS(condition)
-      map.panTo(lowLatLng);
-    }
-    else {
-      condition = $('#highzoom').text();
-      layer.setCartoCSS(condition);
-      map.panTo(highLatLng);
-    }
+
+    layer.on("featureOver",function(e, latlng, pos, data, layer){
+      console.log(map.getCenter());
+    })
 
     //Use Leaflets resize event to set new map height and zoom level
     map.on('resize', function(e) {
-      if (e.newSize.x < mapbreakwidth) {
-        condition = $('#lowzoom').text();
-        layers[1].getSubLayer(0).setCartoCSS(condition)
-        map.setZoom(lowzoom);
-        map.panTo(highLatLng);
-      };
 
-      if (e.newSize.x < mobilebreakwidth){
+      isTopbarVisible = $(window).width() < menubreakwidth; 
+
+      if (isTopbarVisible && e.newSize.x < menubreakwidth) {
         condition = $('#lowzoom').text();
-        layers[1].getSubLayer(0).setCartoCSS(condition)
-        map.setZoom(mobilezoom);
-        map.panTo(mobileLatLng);
+        layer.setCartoCSS(condition);
+        map.setView(lowLatLng, lowzoom)
       }
-
-      if (e.newSize.x > mapbreakwidth) {
-        condition = $('#highzoom').text();
-        layers[1].getSubLayer(0).setCartoCSS(condition)
-        map.setZoom(highzoom);
-        map.panTo(highLatLng);
-      };
+      else {
+        if (e.newSize.x <= sidebarembedbreakwidth) {
+          condition = $('#lowzoom').text();
+          layer.setCartoCSS(condition);
+          map.setView(highLatLng,lowzoom)
+        }
+        else {
+          condition = $('#highzoom').text();
+          layer.setCartoCSS(condition);
+          map.setView(highLatLng,highzoom);
+        }
+      }
     });
 
     setTimeout(function() {
@@ -267,7 +273,6 @@ $(document).ready(function() {
     // toggling for map selectors
     $("#layer_list h5 a").click(function(){
       $("#layer_list h5").not($(this).parent()).toggle();
-      $("#menu-options a:first-child").toggle();
       $(this).toggleClass('list-group-item-info');
       $(this).children('span.back').toggle();
       $(this).children('span.title').toggle();
@@ -276,8 +281,8 @@ $(document).ready(function() {
         $(this).parents(".page-content-nav").find("#layer_selector").prev("h5").toggle();
       }
       else {
-        
-      $(this).parents("#layer_selector").prev().children("h5").toggle();
+
+        $(this).parents("#layer_selector").prev().children("h5").toggle();
       }
     })
 
