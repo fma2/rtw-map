@@ -84,7 +84,7 @@ function main() {
   } else {
     initLat = highLat;
     initLong = highLong;
-    if ($("#map").width() >= sidebarembedbreakwidth) {
+    if ($("#map").width() > sidebarembedbreakwidth) {
       initzoom = highzoom;     
     }
     else {
