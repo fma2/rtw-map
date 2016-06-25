@@ -273,7 +273,6 @@ $(document).ready(function() {
     // toggling for map selectors
     $("#layer_list h5 a").click(function(){
       $("#layer_list h5").not($(this).parent()).toggle();
-      $("#menu-options a:first-child").toggle();
       $(this).toggleClass('list-group-item-info');
       $(this).children('span.back').toggle();
       $(this).children('span.title').toggle();

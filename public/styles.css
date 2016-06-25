@@ -51,14 +51,16 @@ html, body, #container {
   width:100%;
 }
 
-.page-content-nav .btn-primary {
+.page-content-nav .btn-primary, .sidebar-nav .btn-primary {
   background:transparent;
   border-color: #38c;
+  color: #38c;
 }
 
-.page-content-nav .btn-primary:hover {
+.page-content-nav .btn-primary:hover, .sidebar-nav .btn-primary:hover {
   background:#38c;
   color: #fff;
+
 }
 
 .page-content-nav #layer_selector h5 {
