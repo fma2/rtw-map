@@ -272,6 +272,7 @@ div.cartodb-legend {
   box-shadow: rgba(0,0,0,0) 0 0 4px 2px;
   width: 95%;
   background-color: rgba(255,255,255,0.8);
+  bottom:50px;
 }
 
 div.cartodb-legend > ul{
@@ -407,5 +408,6 @@ div.cartodb-popup.v2 div.cartodb-popup-content-wrapper {
     margin-left:auto;
     margin-right:auto;
     right:auto;
+    bottom:35px;
   }
 }

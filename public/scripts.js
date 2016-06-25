@@ -56,12 +56,12 @@ function main() {
   var highzoom = 6,
   lowzoom = 5;
 
-  var highLat = 40.70562793820592,
-  highLong =  -96.1083984375;
+  var highLat =  40.287906612507406,
+  highLong =   -96.064453125,
   highLatLng = new L.LatLng(highLat,highLong);
 
   var lowLat = 44.26093725039923,
-  lowLong =  -94.94384765625;
+  lowLong =  -94.94384765625,
   lowLatLng = new L.LatLng(lowLat, lowLong);
 
   var hiddenMenuLat = 38.90813299596705,
@@ -79,8 +79,7 @@ function main() {
     initLat = lowLat;
     initLong = lowLong;
   } else {
-    initLat = highLat;
-    initLong = highLong;
+    initLat = highLat, initLong = highLong;
     if ($("#map").width() > sidebarembedbreakwidth) {
       initzoom = highzoom;     
     }
@@ -107,6 +106,8 @@ function main() {
 
     // you can get the native map to work with it
     var map = vis.getNativeMap();
+      console.log(map.getCenter());
+
 
     // set sublayer interaction to true
     layer = layers[1].getSubLayer(0)
