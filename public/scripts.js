@@ -106,8 +106,6 @@ function main() {
 
     // you can get the native map to work with it
     var map = vis.getNativeMap();
-      console.log(map.getCenter());
-
 
     // set sublayer interaction to true
     layer = layers[1].getSubLayer(0)
@@ -151,10 +149,6 @@ function main() {
         layer.setCartoCSS(condition)
       }
     }
-
-    layer.on("featureOver",function(e, latlng, pos, data, layer){
-      console.log(map.getCenter());
-    })
 
     //Use Leaflets resize event to set new map height and zoom level
     map.on('resize', function(e) {
